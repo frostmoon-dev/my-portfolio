@@ -39,7 +39,8 @@ export const likes: LikeTile[] = [
     title: "Cosplay",
     body: "I buy my cosplays rather than sew them. The craft I care about is choosing who to be for a day.",
     photos: [],
-    size: "lg",
+    // Switch to "lg" once photos are added: it gives the gallery room.
+    size: "md",
   },
   {
     id: "palette",
