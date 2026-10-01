@@ -82,7 +82,7 @@ Colour tokens live at the top of `app/globals.css`.
 
 - Light and dark themes follow the visitor's system setting. The moon button overrides it, and the choice is remembered.
 - All text pairs meet WCAG 2.2 AA (4.5:1) in both themes.
-- `prefers-reduced-motion` turns off the moths, the floating moon, scroll reveals and all transitions.
+- `prefers-reduced-motion` turns off the moths, the hero load sequence, scroll reveals, the drifting section numbers and all transitions.
 - The hero moon shows the real phase for the visitor's date. It is calculated in the browser (`lib/moon.ts`), so there is no API call.
 - Fonts: Taviraj (headings) and Figtree (body), self-hosted by `next/font`.
 
