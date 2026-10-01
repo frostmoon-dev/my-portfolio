@@ -16,6 +16,7 @@ export function OffTheClock() {
       <div className="wrap">
         <SectionHeading
           id="off-the-clock"
+          index="04"
           kicker="Off the clock"
           title="Everything I love"
           lead="The rest of me, in no particular order."

@@ -3,11 +3,11 @@ import { Figtree, Taviraj } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Headings use Taviraj 600 (preloaded); the italic is only for small
-// asides, so it loads later.
+// Headings use Taviraj 800 (display) and 600 (small headings), preloaded.
+// The italic is only for small asides, so it loads later.
 const taviraj = Taviraj({
   subsets: ["latin"],
-  weight: "600",
+  weight: ["600", "800"],
   variable: "--font-display",
   display: "swap",
 });
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F4F7F7" },
-    { media: "(prefers-color-scheme: dark)", color: "#1C1714" },
+    { media: "(prefers-color-scheme: light)", color: "#EEE6DA" },
+    { media: "(prefers-color-scheme: dark)", color: "#14100D" },
   ],
 };
 

@@ -4,10 +4,11 @@ import { SectionHeading } from "./SectionHeading";
 
 export function Contact() {
   return (
-    <section id="contact" className="section" aria-labelledby="contact-title">
+    <section id="contact" className="section section-band" aria-labelledby="contact-title">
       <div className="wrap">
         <SectionHeading
           id="contact"
+          index="06"
           kicker="Contact"
           title="Say hello"
           lead="For ERP work, side projects, or to tell me your favourite character. Email is fastest."

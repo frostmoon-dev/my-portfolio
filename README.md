@@ -64,7 +64,21 @@ To refresh it after changing a theme:
 
 In the preview window, any token colour under 4.5:1 contrast against its background is lifted slightly so it stays readable. The hex values listed under the preview are the originals.
 
-## Accessibility and design notes
+## Design
+
+"Frost by night, roast by day."
+
+- **Dark:** espresso canvas (`#14100D`), bone text, electric frost accent (`#9CEBFF`).
+- **Light:** bone paper (`#EEE6DA`), espresso text, burnt-roast accent (`#A6370E`).
+- Taviraj 800 for display type with tight tracking; Figtree for body text.
+- Film grain under the content, a dot-lattice sky in the hero, outlined section numbers.
+- ERP and Toolbox use a split layout on wide screens: sticky heading left, content right.
+- Contact is the one full-bleed accent band.
+- Motion: one staggered load sequence in the hero, then scroll-driven reveals. All of it is off with reduced motion.
+
+Colour tokens live at the top of `app/globals.css`.
+
+## Accessibility notes
 
 - Light and dark themes follow the visitor's system setting. The moon button overrides it, and the choice is remembered.
 - All text pairs meet WCAG 2.2 AA (4.5:1) in both themes.

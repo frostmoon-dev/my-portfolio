@@ -17,7 +17,7 @@ const STARS = [
 
 // Tonight's real moon phase, drawn on load. The server renders a fixed
 // crescent so the layout never shifts.
-export function LiveMoon() {
+export function LiveMoon({ className }: { className?: string }) {
   // The current hour is the snapshot: stable between renders, null on the server.
   const hour = useSyncExternalStore(noopSubscribe, currentHour, () => null);
   const phase: MoonPhase | null = hour === null ? null : moonPhase(new Date(hour * HOUR_MS));
@@ -25,7 +25,7 @@ export function LiveMoon() {
   const shown = phase ?? { fraction: 0.18, illumination: 0.3, waxing: true, name: "" };
 
   return (
-    <figure className="live-moon">
+    <figure className={className ? `live-moon ${className}` : "live-moon"}>
       <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
         <defs>
           <radialGradient id="moon-glow" cx="50%" cy="50%" r="50%">

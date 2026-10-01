@@ -7,6 +7,7 @@ export function Projects() {
       <div className="wrap">
         <SectionHeading
           id="projects"
+          index="02"
           kicker="By night"
           title="Things I've built"
           lead="Small worlds and useful tools, mostly made because I wanted them to exist."

@@ -8,6 +8,7 @@ export function Themes() {
       <div className="wrap">
         <SectionHeading
           id="themes"
+          index="03"
           kicker="Editor themes"
           title="Characters, as colour"
           lead="Over a hundred VS Code themes, each built from one character's palette. Pick one to see it write a little X++."

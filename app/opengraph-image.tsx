@@ -16,8 +16,8 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px 96px",
-          background: "#1C1714",
-          color: "#EEF4F5",
+          background: "#14100D",
+          color: "#F2ECE3",
           position: "relative",
         }}
       >
@@ -29,11 +29,11 @@ export default async function Image() {
             width: 300,
             height: 300,
             borderRadius: 300,
-            boxShadow: "-60px 24px 0 0 #D6E9ED",
+            boxShadow: "-60px 24px 0 0 #9CEBFF",
             display: "flex",
           }}
         />
-        <div style={{ fontSize: 30, color: "#C9A48E", display: "flex" }}>frostmoon</div>
+        <div style={{ fontSize: 30, color: "#E8A57C", display: "flex" }}>frostmoon</div>
         <div style={{ fontSize: 132, fontWeight: 700, marginTop: 8, display: "flex" }}>{site.name}</div>
         <div style={{ fontSize: 38, color: "#CCD6D6", marginTop: 12, maxWidth: 720, display: "flex" }}>
           ERP developer by day. Builder of small worlds by night.

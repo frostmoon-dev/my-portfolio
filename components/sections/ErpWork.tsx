@@ -3,12 +3,13 @@ import { SectionHeading } from "./SectionHeading";
 
 export function ErpWork() {
   return (
-    <section id="erp" className="section section-erp" aria-labelledby="erp-title">
+    <section id="erp" className="section section-erp section-split" aria-labelledby="erp-title">
       <div className="wrap">
         <SectionHeading
           id="erp"
+          index="01"
           kicker="By day"
-          title="ERP work: Dynamics 365 Finance & Operations"
+          title="ERP work in Dynamics 365 F&O"
           lead={erpIntro}
         />
 

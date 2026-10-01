@@ -3,9 +3,9 @@ import { SectionHeading } from "./SectionHeading";
 
 export function Toolbox() {
   return (
-    <section id="toolbox" className="section" aria-labelledby="toolbox-title">
+    <section id="toolbox" className="section section-split" aria-labelledby="toolbox-title">
       <div className="wrap">
-        <SectionHeading id="toolbox" kicker="Toolbox" title="What I work with" />
+        <SectionHeading id="toolbox" index="05" kicker="Toolbox" title="What I work with" />
         <div className="toolbox">
           {skillGroups.map((g) => (
             <div key={g.name} className="toolbox-group reveal">
