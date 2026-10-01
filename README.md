@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⏾ frostmoon — portfolio
 
-## Getting Started
+Teha's personal site: ERP developer by day, builder of small worlds by night.
 
-First, run the development server:
+Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · fully static · deploys on Vercel.
+
+## Run it
+
+Needs Node.js 20.9 or newer.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before you push:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Edit the content
 
-## Learn More
+All text lives in `content/`. You never need to touch the components.
 
-To learn more about Next.js, take a look at the following resources:
+| File | What it holds |
+|---|---|
+| `content/site.ts` | Name, hero line, status, motto, contact links, site URL, SEO text |
+| `content/now.ts` | The "Now" card. Change `nowUpdated` when you edit it |
+| `content/erp.ts` | ERP intro, "What I do", and the "Problems I've solved" journal |
+| `content/projects.ts` | Project cards and the filter buttons |
+| `content/themes.ts` | Theme pack names, blurbs, credits, Marketplace links |
+| `content/likes.ts` | "Off the clock" tiles |
+| `content/skills.ts` | Toolbox groups |
+| `content/types.ts` | The shapes of all of the above (TypeScript checks your edits) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Off the clock tiles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- A tile with no `body`, `items`, `swatches` or `photos` is **hidden on the live site**.
+- While running `npm run dev`, hidden tiles appear as dashed "fill me in" slots.
+- To add cosplay photos:
+  1. Put the files in `public/images/cosplay/`.
+  2. Add them to the cosplay tile's `photos` with `src`, `alt`, `width` and `height`.
+  3. Change that tile's `size` to `"lg"` so the gallery has room.
 
-## Deploy on Vercel
+### Private projects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set `isPrivate: true` and leave out `links`. The card shows "Private repo" and no GitHub link.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Theme palettes
+
+The theme gallery reads `content/themes.generated.ts`. It is generated from the theme repos' JSON files, so the swatches are the real colours.
+
+To refresh it after changing a theme:
+
+1. Clone `genshin-hsr-themes`, `wuwa-themes`, `columbina-theme` and `cupcake-maroon` into one folder.
+2. Run:
+   ```bash
+   THEME_REPOS_DIR=/path/to/that/folder npm run palettes
+   ```
+3. Commit the updated `content/themes.generated.ts`.
+
+In the preview window, any token colour under 4.5:1 contrast against its background is lifted slightly so it stays readable. The hex values listed under the preview are the originals.
+
+## Accessibility and design notes
+
+- Light and dark themes follow the visitor's system setting. The moon button overrides it, and the choice is remembered.
+- All text pairs meet WCAG 2.2 AA (4.5:1) in both themes.
+- `prefers-reduced-motion` turns off the moths, the floating moon, scroll reveals and all transitions.
+- The hero moon shows the real phase for the visitor's date. It is calculated in the browser (`lib/moon.ts`), so there is no API call.
+- Fonts: Taviraj (headings) and Figtree (body), self-hosted by `next/font`.
+
+## Deploy
+
+1. Import the repo in Vercel. No environment variables needed.
+2. After the first deploy, put the real URL in `content/site.ts` → `url`. This updates the sitemap, robots and share image links.
