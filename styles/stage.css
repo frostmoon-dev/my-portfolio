@@ -1,0 +1,441 @@
+/* ------------------------------------------------------------------
+   The stage: the atelier, the arrival veil, and the introduction.
+   ------------------------------------------------------------------ */
+.stage {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+  max-height: 1200px;
+  overflow: hidden;
+  isolation: isolate;
+  --scroll: 0;
+}
+.stage-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.atelier-poster,
+.atelier-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.atelier-canvas {
+  opacity: 0;
+  transition: opacity 1.8s var(--ease);
+}
+.stage[data-ready] .atelier-canvas {
+  opacity: 1;
+}
+.stage[data-ready] .atelier-poster {
+  visibility: hidden;
+  transition: visibility 0s 1.9s;
+}
+
+/* the painted poster */
+.poster-spot {
+  cursor: pointer;
+  outline: none;
+}
+.poster-spot > :not(title) {
+  transition: filter 0.4s var(--ease);
+}
+.poster-spot:hover > *,
+.poster-spot:focus-visible > * {
+  filter: brightness(1.25) drop-shadow(0 0 10px rgb(169 220 255 / 0.55));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .poster-rain line {
+    animation: rain 1.6s linear infinite;
+  }
+  .poster-rain line:nth-child(3n) {
+    animation-duration: 2.2s;
+  }
+  .poster-rain line:nth-child(4n + 1) {
+    animation-delay: -0.8s;
+  }
+}
+@keyframes rain {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(220px);
+    opacity: 0;
+  }
+}
+
+/* legibility for the copy, and the dim as the room scrolls away */
+.stage-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(7 18 46 / 0.86) 0%, rgb(7 18 46 / 0.55) 30%, rgb(7 18 46 / 0) 56%),
+    linear-gradient(0deg, var(--bg) 0%, rgb(10 27 66 / 0.6) 12%, rgb(10 27 66 / 0) 30%);
+}
+.stage-shade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  opacity: calc(var(--scroll) * 0.9);
+}
+
+.stage-copy {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding-bottom: clamp(4.5rem, 9vh, 7rem);
+  pointer-events: none;
+}
+.stage-copy > * {
+  max-width: 34rem;
+}
+.stage-copy a,
+.stage-copy button {
+  pointer-events: auto;
+}
+.stage-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.stage-title {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 7.2vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+.stage-line {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--ink);
+}
+.stage-line:first-of-type {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  line-height: 1.25;
+  color: var(--sky);
+}
+.stage-role {
+  color: var(--muted);
+}
+.stage-objects {
+  max-width: 40rem !important;
+  margin-top: 0.4rem;
+}
+.stage-hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.stage-objects ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+}
+.stage-objects a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgb(10 27 66 / 0.55);
+  backdrop-filter: blur(6px);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition:
+    border-color 0.3s var(--ease),
+    background-color 0.3s var(--ease);
+}
+.stage-objects a .mono {
+  color: var(--gold);
+  font-size: 0.7rem;
+}
+.stage-objects a:hover,
+.stage-objects a:focus-visible {
+  border-color: var(--sky);
+  background: rgb(15 38 88 / 0.85);
+}
+
+/* the introduction arrives line by line once you enter */
+.stage .line {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(6px);
+  transition:
+    opacity 1.3s var(--ease),
+    transform 1.3s var(--ease),
+    filter 1.3s var(--ease);
+  transition-delay: calc(var(--i, 0) * 0.16s + 0.6s);
+}
+.stage[data-phase="intro"] .line,
+.stage[data-phase="explore"] .line {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.stage-kicker {
+  transition: opacity 1.2s var(--ease) 0.3s;
+}
+.stage[data-phase="arrival"] .stage-kicker {
+  opacity: 0;
+}
+
+/* while the camera travels to an object, the words step aside */
+.stage-copy,
+.stage-scroll {
+  transition: opacity 0.6s var(--ease);
+}
+.stage[data-focus] .stage-copy,
+.stage[data-focus] .stage-scroll {
+  opacity: 0;
+}
+
+.stage-scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 1.6rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.stage-scroll span {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(var(--sky), transparent);
+  transform-origin: top;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .stage-scroll span {
+    animation: drip 2.4s var(--ease) infinite;
+  }
+}
+@keyframes drip {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1) translateY(20px);
+    opacity: 0;
+  }
+}
+
+/* labels floating over room objects (rendered by the 3D scene) */
+.room-label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.8rem 0.5rem;
+  border: 1px solid rgb(169 220 255 / 0.35);
+  border-radius: 10px;
+  background: rgb(8 20 52 / 0.82);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  transform: translateY(-6px);
+  animation: label-in 0.45s var(--ease);
+}
+.room-label-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.room-label-target {
+  font-family: var(--monof);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.room-label-note {
+  max-width: 15rem;
+  margin-top: 0.3rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--sky);
+  white-space: normal;
+  text-align: center;
+}
+@keyframes label-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+}
+
+/* arrival */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background:
+    radial-gradient(60% 50% at 50% 55%, rgb(10 27 66 / 0.78) 0%, rgb(4 11 30 / 0.97) 100%);
+  text-align: center;
+  transition: opacity 1.3s var(--ease);
+}
+:root[data-visited] .veil {
+  display: none;
+}
+.veil.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+.veil-inner {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 38rem;
+}
+.veil-inner > * {
+  animation: veil-line 1.6s var(--ease) both;
+}
+.veil-inner > :nth-child(2) {
+  animation-delay: 0.5s;
+}
+.veil-inner > :nth-child(3) {
+  animation-delay: 1.1s;
+}
+.veil-inner > :nth-child(4) {
+  animation-delay: 1.6s;
+}
+.veil-inner > :nth-child(5),
+.veil-inner > :nth-child(6),
+.veil-inner > :nth-child(7) {
+  animation-delay: 2.1s;
+}
+@keyframes veil-line {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(6px);
+  }
+}
+.veil-time {
+  color: var(--gold);
+  letter-spacing: 0.3em;
+}
+.veil-title {
+  font-family: var(--monof);
+  font-size: 0.9rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.veil-tagline {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.02;
+}
+.veil-line {
+  color: var(--muted);
+  max-width: 28rem;
+}
+.veil-enter {
+  margin-top: 1.2rem;
+}
+.veil-enter .mono {
+  color: inherit;
+  opacity: 0.6;
+}
+.veil-skip {
+  color: var(--muted);
+}
+.veil-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  min-height: 1.5em;
+}
+.veil-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  opacity: 0.5;
+}
+.veil-status[data-ready]::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .veil-status:not([data-ready])::before {
+    animation: flicker 1.4s ease-in-out infinite;
+  }
+}
+@keyframes flicker {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.dip {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-in-out);
+}
+.dip.is-on {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .stage {
+    min-height: 680px;
+  }
+  .stage-shade {
+    background: linear-gradient(0deg, var(--bg) 0%, rgb(10 27 66 / 0.92) 42%, rgb(10 27 66 / 0.2) 70%, rgb(10 27 66 / 0) 100%);
+  }
+  .stage-copy {
+    gap: 0.8rem;
+    padding-bottom: 4rem;
+  }
+  .stage-hint {
+    display: none;
+  }
+  .stage-objects a {
+    min-height: 44px;
+  }
+  .stage-scroll {
+    display: none;
+  }
+}

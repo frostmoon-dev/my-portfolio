@@ -1,41 +1,40 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Taviraj } from "next/font/google";
+import { Instrument_Serif, JetBrains_Mono, Manrope } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Headings use Taviraj 800 (display) and 600 (small headings), preloaded.
-// The italic is only for small asides, so it loads later.
-const taviraj = Taviraj({
-  subsets: ["latin"],
-  weight: ["600", "800"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const tavirajItalic = Taviraj({
+// Instrument Serif for the expressive headings, Manrope for reading,
+// JetBrains Mono for timestamps, indexes and anything technical.
+const serif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
-  style: "italic",
-  variable: "--font-display-italic",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
-  preload: false,
 });
 
-const figtree = Figtree({
+const sans = Manrope({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: site.title,
+  title: { default: site.title, template: `%s · ${site.atelier}` },
   description: site.description,
   authors: [{ name: `${site.name} (${site.fullName})` }],
   openGraph: {
     type: "website",
     url: "/",
-    siteName: `${site.name} · ${site.handle}`,
+    siteName: site.atelier,
     title: site.title,
     description: site.description,
   },
@@ -43,20 +42,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#EEE6DA" },
-    { media: "(prefers-color-scheme: dark)", color: "#14100D" },
-  ],
+  themeColor: "#0a1b42",
+  colorScheme: "dark",
 };
 
-// Runs before first paint so a saved theme never flashes the wrong colours.
-const themeInit = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
+// Runs before first paint: returning visitors (this tab) and deep links skip the arrival veil.
+const arrivalInit = `try{if(sessionStorage.getItem("atelier-visited")==="1"||location.hash)document.documentElement.dataset.visited="1"}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${taviraj.variable} ${tavirajItalic.variable} ${figtree.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <script dangerouslySetInnerHTML={{ __html: arrivalInit }} />
+        <noscript>
+          <style>{`.veil{display:none!important}.stage .line,.stage-kicker{opacity:1!important;transform:none!important;filter:none!important}.envelope .stationery{transform:none!important;opacity:1!important}.envelope-open{display:none}`}</style>
+        </noscript>
       </head>
       <body>
         <a href="#main" className="skip-link">

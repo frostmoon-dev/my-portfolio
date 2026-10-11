@@ -1,0 +1,50 @@
+/* ------------------------------------------------------------------
+   The Midnight Atelier — design tokens.
+   One palette, night only. Every text pair is AA (4.5:1) or better;
+   steel blue is for lines and fills, never for text.
+   ------------------------------------------------------------------ */
+:root {
+  /* palette */
+  --navy: #0a1b42;
+  --deep: #0f2658;
+  --steel: #2d6ac8;
+  --sky: #a9dcff;
+  --sage: #a3ad91;
+  --cream: #e8ddc9;
+  --gold: #d7b06a;
+
+  /* roles */
+  --bg: var(--navy);
+  --bg-2: #0c1f4c;
+  --surface: var(--deep);
+  --surface-2: #132d66;
+  --ink: var(--cream);
+  --muted: #a7b0c4;
+  --accent: var(--sky);
+  --line: rgb(232 221 201 / 0.14);
+  --line-strong: rgb(232 221 201 / 0.32);
+  --focus: var(--sky);
+
+  /* paper: the notebook, cards, the letter */
+  --paper: #ece3d1;
+  --paper-2: #e2d6bf;
+  --paper-ink: #0f2658;
+  --paper-muted: #4a5878;
+  --paper-rule: rgb(45 106 200 / 0.18);
+
+  /* type */
+  --serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  --sans: var(--font-sans), system-ui, sans-serif;
+  --monof: var(--font-mono), ui-monospace, monospace;
+
+  /* motion: soft, weighted, never bouncy */
+  --ease: cubic-bezier(0.22, 0.61, 0.24, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --wrap: 84rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --radius: 14px;
+  --shadow: 0 1px 2px rgb(2 8 26 / 0.4), 0 24px 48px -24px rgb(2 8 26 / 0.8);
+  --header-h: 4.25rem;
+  color-scheme: dark;
+}

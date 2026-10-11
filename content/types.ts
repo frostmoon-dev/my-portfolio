@@ -20,6 +20,12 @@ export type Project = {
   links?: Link[];
   /** Small note under the card, e.g. an art credit. */
   note?: string;
+  /** Generated cover art for the archive entry. */
+  cover?: ProjectCover;
+  /** Optional case-study fields. Anything left out is simply not shown. */
+  challenges?: string[];
+  contributions?: string[];
+  outcome?: string;
 };
 
 export type NowItem = { label: string; value: string };
@@ -76,4 +82,69 @@ export type ThemePack = {
   credit?: string;
   marketplace?: string;
   installsNote?: string;
+};
+
+// ------------------------------------------------------------------
+// The Midnight Atelier
+// ------------------------------------------------------------------
+
+/** Objects in the 3D room that open a section. */
+export type AtelierObjectId = "monitor" | "notebook" | "bookshelf" | "drawer" | "coffee" | "window" | "letter";
+
+export type AtelierObject = {
+  id: AtelierObjectId;
+  /** Short name of the object, e.g. "The notebook". */
+  name: string;
+  /** Section id it opens. */
+  target: string;
+  /** Small editorial label shown on hover. */
+  label: string;
+};
+
+/** A page in the notebook ("The Person"). */
+export type NotebookPage = {
+  id: string;
+  /** Small handwritten-style heading. */
+  heading: string;
+  paragraphs: string[];
+  /** Optional margin note, shown rotated in the corner. */
+  margin?: string;
+};
+
+/** A line on the "Workshop" experience timeline. Leave org/period empty until you fill them in. */
+export type ExperienceEntry = {
+  role: string;
+  org?: string;
+  period?: string;
+  summary?: string;
+  points?: string[];
+};
+
+export type KnowledgeShelf = {
+  id: string;
+  /** Catalogue mark, e.g. "A". */
+  mark: string;
+  name: string;
+  note: string;
+  items: string[];
+};
+
+/** A star in the "Still Becoming" constellation. */
+export type Milestone = {
+  id: string;
+  label: string;
+  /** Reached milestones are solid. Future ones are drawn as unfinished. */
+  reached: boolean;
+  /** Position in the constellation, 0–100 on both axes. */
+  x: number;
+  y: number;
+  detail?: string;
+  /** Draft milestones are only shown while running `npm run dev`. */
+  draft?: boolean;
+};
+
+export type ProjectCover = {
+  /** Main tint of the generated archive plate. */
+  tint: string;
+  motif: "dialogue" | "moon" | "envelope" | "ledger" | "board" | "swatch";
 };

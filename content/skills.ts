@@ -1,18 +1,41 @@
-import type { SkillGroup } from "./types";
+import type { KnowledgeShelf } from "./types";
 
-// Toolbox. No bars, no stars: just what I use.
+// "Acquired Knowledge". No bars, no percentages: just what lives on each shelf.
 
-export const skillGroups: SkillGroup[] = [
+export const knowledgeShelves: KnowledgeShelf[] = [
   {
-    name: "ERP",
-    skills: ["X++", "Dynamics 365 Finance & Operations", "AL / Business Central", "SSRS", "SQL Server", "Data entities", "Workflow"],
+    id: "core",
+    mark: "A",
+    name: "Core development",
+    note: "The languages I think in.",
+    items: ["X++", "TypeScript", "JavaScript", "SQL Server"],
   },
   {
-    name: "Web",
-    skills: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS", "GSAP", "Framer Motion", "Supabase", "Prisma", "PostgreSQL", "Vitest", "Playwright", "PWA"],
+    id: "enterprise",
+    mark: "B",
+    name: "Enterprise applications",
+    note: "Where the day job lives.",
+    items: ["Dynamics 365 Finance & Operations", "AL / Business Central", "SSRS", "Data entities", "Workflow"],
   },
   {
-    name: "Design",
-    skills: ["Figma", "Canva", "UI / UX", "VS Code theme design"],
+    id: "frontend",
+    mark: "C",
+    name: "Frontend experimentation",
+    note: "Where the side projects live.",
+    items: ["Next.js", "React", "Tailwind CSS", "PWA", "Supabase", "Prisma", "PostgreSQL"],
+  },
+  {
+    id: "creative",
+    mark: "D",
+    name: "Creative development",
+    note: "Motion, colour, and rooms like this one.",
+    items: ["GSAP", "Framer Motion", "Three.js / React Three Fiber", "VS Code theme design", "UI / UX"],
+  },
+  {
+    id: "tools",
+    mark: "E",
+    name: "Tools & workflow",
+    note: "What keeps the work honest.",
+    items: ["Git & GitHub", "Vitest", "Playwright", "Figma", "Canva"],
   },
 ];
