@@ -19,7 +19,7 @@ export function Knowledge() {
           lead="No percentages — nobody is 87% of a language. Just what lives on each shelf, and what it's for."
           layout="split"
         />
-        <ol className="catalogue">
+        <ol className="catalogue" data-motion="ledger-rows" data-motion-auto data-rule="top">
           {knowledgeShelves.map((s) => (
             <li key={s.id} className="catalogue-row">
               <span className="catalogue-mark" aria-hidden="true">

@@ -1,42 +1,50 @@
 /* ------------------------------------------------------------------
    Motion: "Ledger rows"
-   A list whose rows are written in like lines in a ledger: each row rises
+   Rows are written in like lines in a ledger: each row's content rises
    into place, then its hairline is ruled from left to right.
 
    Only `transform` and `opacity` are animated, so nothing reflows.
-   Opt in with  data-motion="ledger-rows"  on the list; the hook
-   useLedgerRows() sets data-state on it:
-     (none) → plain, visible list (no JS, or motion not wired)
-     pre    → rows waiting below, invisible (set off screen, never seen)
+
+   Opt in on any list:   data-motion="ledger-rows"
+     data-rule="top"            hairline above each row (default: below)
+     data-rule-style="dashed"   dashed hairline
+     data-motion-interactive    rows are links: hover sweep + press state
+     data-motion-auto           driven by <MotionLists /> (static lists);
+                                lists that filter use useLedgerRows()
+   data-state on the list:
+     (none) → plain, visible list (no JS)
+     pre    → rows waiting below, invisible (only ever off screen)
      in     → rows entered (staggered)
      out    → rows leaving upward (before a filter swaps them)
-   Tune everything with the variables below; delete the attribute to
-   switch the whole effect off.
+   Tune with the variables below; remove the attribute to switch a list off.
    ------------------------------------------------------------------ */
 [data-motion="ledger-rows"] {
   --lr-ease: cubic-bezier(0.16, 1, 0.3, 1); /* fast out, long soft landing */
   --lr-ease-out: cubic-bezier(0.4, 0, 1, 1);
   --lr-duration: 820ms;
   --lr-rule-duration: 900ms;
-  --lr-rule-delay: 160ms; /* rule starts after its row has mostly landed */
+  --lr-rule-delay: 160ms; /* the rule starts once its row has mostly landed */
   --lr-stagger: 70ms;
   --lr-stagger-max: 8; /* rows after this enter together */
   --lr-rise: 18px;
   --lr-exit-duration: 220ms;
   --lr-exit-lift: 8px;
-  --lr-hover-nudge: 10px;
   --lr-press-scale: 0.985;
+  --lr-rule: var(--line);
+}
+[data-motion="ledger-rows"][data-rule-style="dashed"] {
+  --lr-rule: repeating-linear-gradient(90deg, var(--line-strong) 0 5px, transparent 5px 10px);
 }
 
-[data-motion="ledger-rows"] > li {
+/* each row: the border becomes a pseudo-element so it can scale */
+[data-motion="ledger-rows"] > * {
   position: relative;
+  border-top: 0;
   border-bottom: 0;
   --lr-delay: calc(min(var(--i, 0), var(--lr-stagger-max)) * var(--lr-stagger));
 }
-
-/* the hairline under each row, drawn instead of a border so it can scale */
-[data-motion="ledger-rows"] > li::after,
-[data-motion="ledger-rows"] > li::before {
+[data-motion="ledger-rows"] > *::after,
+[data-motion-interactive][data-motion="ledger-rows"] > *::before {
   content: "";
   position: absolute;
   left: 0;
@@ -46,42 +54,39 @@
   transform-origin: left center;
   pointer-events: none;
 }
-[data-motion="ledger-rows"] > li::after {
-  background: var(--line);
+[data-motion="ledger-rows"][data-rule="top"] > *::after {
+  top: 0;
+  bottom: auto;
 }
-/* the accent line that sweeps in on hover and focus */
-[data-motion="ledger-rows"] > li::before {
-  z-index: 1;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 520ms var(--lr-ease);
+[data-motion="ledger-rows"] > *::after {
+  background: var(--lr-rule);
+  transition: transform var(--lr-rule-duration) var(--lr-ease);
+  transition-delay: calc(var(--lr-delay) + var(--lr-rule-delay));
 }
 
-/* the row's content moves as one piece */
-[data-motion="ledger-rows"] > li > a {
+/* the row's content moves as one piece. The attribute is doubled on
+   purpose: it lifts these rules above per-component styles (e.g. a link's
+   own colour transition) without !important. */
+[data-motion="ledger-rows"][data-motion] > * > * {
   transition:
     opacity var(--lr-duration) var(--lr-ease),
     transform var(--lr-duration) var(--lr-ease);
   transition-delay: var(--lr-delay);
 }
-[data-motion="ledger-rows"] > li::after {
-  transition: transform var(--lr-rule-duration) var(--lr-ease);
-  transition-delay: calc(var(--lr-delay) + var(--lr-rule-delay));
-}
 
-/* enter: waiting state (off screen) */
-[data-motion="ledger-rows"][data-state="pre"] > li > a {
+/* enter: waiting state (set only while the list is off screen) */
+[data-motion="ledger-rows"][data-motion][data-state="pre"] > * > * {
   opacity: 0;
   transform: translate3d(0, var(--lr-rise), 0);
   transition: none;
 }
-[data-motion="ledger-rows"][data-state="pre"] > li::after {
+[data-motion="ledger-rows"][data-state="pre"] > *::after {
   transform: scaleX(0);
   transition: none;
 }
 
-/* exit: rows lift and fade together, quickly, rule stays */
-[data-motion="ledger-rows"][data-state="out"] > li > a {
+/* exit: rows lift and fade together, quickly; the rule is erased right to left */
+[data-motion="ledger-rows"][data-motion][data-state="out"] > * > * {
   opacity: 0;
   transform: translate3d(0, calc(var(--lr-exit-lift) * -1), 0);
   transition:
@@ -89,38 +94,34 @@
     transform var(--lr-exit-duration) var(--lr-ease-out);
   transition-delay: 0ms;
 }
-[data-motion="ledger-rows"][data-state="out"] > li::after {
+[data-motion="ledger-rows"][data-state="out"] > *::after {
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform var(--lr-exit-duration) var(--lr-ease-out);
   transition-delay: 0ms;
 }
 
-/* hover and keyboard focus: accent rule sweeps in, name and arrow lean right */
-[data-motion="ledger-rows"] > li:focus-within::before {
-  transform: scaleX(1);
-}
-[data-motion="ledger-rows"] .archive-name,
-[data-motion="ledger-rows"] .archive-arrow {
+/* interactive rows: an accent line sweeps in on hover and keyboard focus */
+[data-motion-interactive][data-motion="ledger-rows"] > *::before {
+  z-index: 1;
+  background: var(--accent);
+  transform: scaleX(0);
   transition: transform 520ms var(--lr-ease);
 }
-[data-motion="ledger-rows"] > li:focus-within .archive-name {
-  transform: translate3d(var(--lr-hover-nudge), 0, 0);
+[data-motion-interactive][data-motion="ledger-rows"][data-rule="top"] > *::before {
+  top: 0;
+  bottom: auto;
+}
+[data-motion-interactive][data-motion="ledger-rows"] > *:focus-within::before {
+  transform: scaleX(1);
 }
 @media (hover: hover) {
-  [data-motion="ledger-rows"] > li:hover::before {
+  [data-motion-interactive][data-motion="ledger-rows"] > *:hover::before {
     transform: scaleX(1);
   }
-  [data-motion="ledger-rows"] > li:hover .archive-name {
-    transform: translate3d(var(--lr-hover-nudge), 0, 0);
-  }
-  [data-motion="ledger-rows"] > li:hover .archive-arrow {
-    transform: translate3d(6px, 0, 0);
-  }
 }
-
 /* active: a short press, felt more than seen */
-[data-motion="ledger-rows"][data-state="in"] > li > a:active {
+[data-motion-interactive][data-motion="ledger-rows"][data-motion][data-state="in"] > * > a:active {
   transform: scale(var(--lr-press-scale));
   transition-duration: 90ms;
   transition-delay: 0ms;
@@ -131,7 +132,6 @@
   [data-motion="ledger-rows"] {
     --lr-rise: 0px;
     --lr-exit-lift: 0px;
-    --lr-hover-nudge: 0px;
     --lr-press-scale: 1;
     --lr-stagger: 0ms;
     --lr-rule-delay: 0ms;
@@ -139,11 +139,16 @@
     --lr-rule-duration: 0ms;
     --lr-exit-duration: 120ms;
   }
-  [data-motion="ledger-rows"] > li::before {
+  [data-motion-interactive][data-motion="ledger-rows"] > *::before {
     transition: none;
   }
-  [data-motion="ledger-rows"] .archive-name,
-  [data-motion="ledger-rows"] .archive-arrow {
+  /* no transform transitions at all: only opacity changes */
+  [data-motion="ledger-rows"][data-motion][data-state] > * > * {
+    transform: none;
+    transition-property: opacity;
+  }
+  [data-motion="ledger-rows"][data-state] > *::after {
+    transform: none;
     transition: none;
   }
 }

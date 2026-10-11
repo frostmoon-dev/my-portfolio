@@ -39,7 +39,7 @@ export function ArchiveIndex() {
       </div>
 
       <div className="archive-body">
-        <ol className="archive-list" ref={listRef} data-motion="ledger-rows">
+        <ol className="archive-list" ref={listRef} data-motion="ledger-rows" data-motion-interactive>
           {shown.map((p, i) => {
             const no = String(projects.indexOf(p) + 1).padStart(2, "0");
             return (
