@@ -1,6 +1,6 @@
 import type { Project, ProjectKind } from "./types";
 
-// Project cards for "Things I've built". Order here is the order on the page.
+// Entries for "The Archives". Each one also gets a case-study page at /projects/<id>. Order here is the order on the page.
 // Every line was checked against the repo's README and package.json.
 
 const gh = (repo: string) => ({ label: "Source on GitHub", href: `https://github.com/frostmoon-dev/${repo}` });
@@ -15,6 +15,7 @@ export const projectFilters: { id: "all" | ProjectKind; label: string }[] = [
 export const projects: Project[] = [
   {
     id: "bond-garden",
+    cover: { tint: "#7C8FB8", motif: "dialogue" },
     name: "Bond Garden",
     codename: "fgo-bot-garden",
     kind: "web",
@@ -28,6 +29,7 @@ export const projects: Project[] = [
   },
   {
     id: "moonpaper",
+    cover: { tint: "#A9DCFF", motif: "moon" },
     name: "MoonPaper",
     codename: "fgo-lore-site",
     kind: "web",
@@ -40,6 +42,7 @@ export const projects: Project[] = [
   },
   {
     id: "napyru",
+    cover: { tint: "#A3AD91", motif: "envelope" },
     name: "Napyru",
     codename: "messaging-app",
     kind: "web",
@@ -52,6 +55,7 @@ export const projects: Project[] = [
   },
   {
     id: "moona",
+    cover: { tint: "#D7B06A", motif: "ledger" },
     name: "Moona",
     codename: "bb-budget-tracker",
     kind: "web",
@@ -64,6 +68,7 @@ export const projects: Project[] = [
   },
   {
     id: "fo-task-board",
+    cover: { tint: "#2D6AC8", motif: "board" },
     name: "F&O Task Board",
     codename: "fo-task-board-web",
     kind: "tool",
@@ -76,6 +81,7 @@ export const projects: Project[] = [
   },
   {
     id: "hoyoverse-themes",
+    cover: { tint: "#B9A3D8", motif: "swatch" },
     name: "HoYoverse Color Themes",
     codename: "genshin-hsr-themes",
     kind: "theme",
@@ -90,6 +96,7 @@ export const projects: Project[] = [
   },
   {
     id: "wuwa-themes",
+    cover: { tint: "#8FC1C9", motif: "swatch" },
     name: "Wuthering Waves Color Themes",
     codename: "wuwa-themes",
     kind: "theme",
@@ -104,6 +111,7 @@ export const projects: Project[] = [
   },
   {
     id: "columbina-theme",
+    cover: { tint: "#A9C4FF", motif: "swatch" },
     name: "Columbina Theme",
     codename: "columbina-theme",
     kind: "theme",
@@ -118,6 +126,7 @@ export const projects: Project[] = [
   },
   {
     id: "cupcake-maroon",
+    cover: { tint: "#C46B7A", motif: "swatch" },
     name: "Cupcake Maroon",
     codename: "cupcake-maroon",
     kind: "theme",
