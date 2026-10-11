@@ -53,7 +53,7 @@
   text-transform: uppercase;
 }
 .section-index {
-  color: var(--gold);
+  color: var(--accent);
 }
 .section-rule {
   align-self: center;
@@ -101,7 +101,7 @@
 
 /* 01 — The Person ---------------------------------------------------- */
 .section-person::before {
-  background: radial-gradient(60% 50% at 25% 0%, rgb(255 207 148 / 0.07), transparent 70%);
+  background: none;
 }
 .person-grid {
   display: grid;
@@ -122,7 +122,7 @@
 .identity {
   margin: 0 0 2.5rem;
   padding-left: 1.25rem;
-  border-left: 1px solid var(--gold);
+  border-left: 1px solid var(--accent);
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(1.35rem, 2vw, 1.65rem);
@@ -144,7 +144,7 @@
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: var(--steel);
+  background: var(--accent);
   opacity: 0.7;
 }
 .index-card h3 {
@@ -197,7 +197,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  filter: drop-shadow(0 30px 40px rgb(2 8 26 / 0.6));
+  filter: drop-shadow(0 14px 28px rgb(51 41 37 / 0.14));
 }
 @media (min-width: 760px) {
   .notebook-spread {
@@ -220,7 +220,7 @@
   display: none;
   background-color: var(--paper-2);
   border-radius: 6px 0 0 6px;
-  box-shadow: inset -18px 0 24px -18px rgb(15 38 88 / 0.35);
+  box-shadow: inset -18px 0 24px -18px rgb(51 41 37 / 0.14);
 }
 .notebook-right {
   position: relative;
@@ -228,7 +228,7 @@
 }
 .notebook-right .notebook-page {
   border-radius: 6px;
-  box-shadow: inset 18px 0 24px -18px rgb(15 38 88 / 0.3);
+  box-shadow: inset 18px 0 24px -18px rgb(51 41 37 / 0.12);
 }
 @media (min-width: 760px) {
   .notebook-left {
@@ -253,7 +253,7 @@
   margin: 1rem 0 0 auto;
   max-width: 16rem;
   font-size: 1.2rem;
-  color: #6a4b1a;
+  color: var(--cocoa);
   transform: rotate(-3deg);
   text-align: right;
 }
@@ -325,7 +325,7 @@
 
 /* 02 — The Workshop -------------------------------------------------- */
 .section-workshop::before {
-  background: radial-gradient(45% 40% at 85% 15%, rgb(143 196 255 / 0.06), transparent 70%);
+  background: none;
 }
 .workshop-top {
   display: grid;
@@ -343,10 +343,10 @@
 .timeline-entry {
   position: relative;
   padding: 0.25rem 0 0.25rem 1.75rem;
-  border-left: 1px solid var(--sky);
+  border-left: 1px solid var(--accent);
 }
 .timeline-meta {
-  color: var(--gold);
+  color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
@@ -376,7 +376,7 @@
   top: 0.75em;
   width: 0.6rem;
   height: 1px;
-  background: var(--sky);
+  background: var(--accent);
 }
 .tools {
   padding-top: 1.25rem;
@@ -441,7 +441,7 @@
   }
 }
 .capability-no {
-  color: var(--gold);
+  color: var(--accent);
 }
 .journal {
   list-style: none;
@@ -463,7 +463,7 @@
   }
 }
 .journal-ref {
-  color: var(--gold);
+  color: var(--accent);
   padding-top: 0.35rem;
 }
 .journal-entry h4 {
@@ -496,7 +496,7 @@
 
 /* 03 — The Archives -------------------------------------------------- */
 .section-archives::before {
-  background: radial-gradient(40% 40% at 90% 40%, rgb(215 176 106 / 0.04), transparent 70%);
+  background: none;
 }
 .archive-filters {
   display: flex;
@@ -521,7 +521,7 @@
 }
 .archive-filters button[aria-pressed="true"] {
   color: var(--ink);
-  border-bottom-color: var(--cream);
+  border-bottom-color: var(--ink);
 }
 .archive-filters p {
   margin-left: auto;
@@ -547,7 +547,7 @@
   text-decoration: none;
 }
 .archive-no {
-  color: var(--gold);
+  color: var(--accent);
 }
 .archive-title {
   display: grid;
@@ -573,18 +573,18 @@
 }
 .archive-arrow {
   display: none;
-  color: var(--sky);
+  color: var(--accent);
   font-size: 1.4rem;
   transition: transform 0.5s var(--ease);
 }
 .archive-link:focus-visible .archive-name {
-  color: var(--sky);
+  color: var(--accent);
 }
 /* movement on hover only where there is a real pointer; touch taps never stick */
 @media (hover: hover) {
   .archive-link:hover .archive-name {
     transform: translateX(10px);
-    color: var(--sky);
+    color: var(--accent);
   }
   .archive-link:hover .archive-arrow {
     transform: translateX(6px);
@@ -617,7 +617,7 @@
   }
   .archive-entry.is-active .archive-name {
     transform: translateX(10px);
-    color: var(--sky);
+    color: var(--accent);
   }
   .archive-plate {
     display: block;
@@ -667,7 +667,7 @@
   font-family: var(--serif);
   font-size: 2.4rem;
   line-height: 1;
-  color: var(--gold);
+  color: var(--accent);
 }
 .catalogue-head h3 {
   font-family: var(--serif);
@@ -694,7 +694,7 @@
 .catalogue-items li:not(:last-child)::after {
   content: "·";
   margin: 0 0.6em;
-  color: var(--sage);
+  color: var(--line-strong);
 }
 .catalogue-hand {
   font-size: 1.5rem;
@@ -704,7 +704,7 @@
 
 /* 06 — Still Becoming ------------------------------------------------ */
 .section-becoming::before {
-  background: linear-gradient(var(--bg), #06112c 30%, #06112c 70%, var(--bg));
+  background: none;
 }
 .constellation {
   position: relative;
@@ -726,7 +726,7 @@
   overflow: visible;
 }
 .c-line {
-  stroke: var(--sky);
+  stroke: var(--frost);
   stroke-width: 1.5;
   opacity: 0.6;
 }
@@ -735,16 +735,16 @@
   opacity: 0.4;
 }
 .c-star circle {
-  fill: var(--cream);
+  fill: var(--night-ink);
 }
 .c-star .c-halo {
   fill: none;
-  stroke: var(--sky);
+  stroke: var(--frost);
   stroke-opacity: 0.35;
 }
 .c-star-future circle {
   fill: none;
-  stroke: var(--sky);
+  stroke: var(--frost);
   stroke-width: 1.5;
   stroke-dasharray: 3 4;
 }
@@ -769,8 +769,12 @@
     stroke-dashoffset: -56;
   }
 }
+/* on the night window the labels are light; below it, on paper, they are ink */
 .constellation-labels {
   list-style: none;
+  color: var(--night-ink);
+  --label-muted: var(--night-muted);
+  --label-future: var(--frost);
 }
 .constellation-labels li {
   position: absolute;
@@ -787,7 +791,7 @@
 .constellation-labels .mono {
   font-size: 0.62rem;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--label-future);
 }
 .constellation-labels li.is-above {
   transform: translate(-50%, calc(-100% - 18px));
@@ -799,13 +803,13 @@
 }
 .constellation-labels .is-future strong {
   font-style: italic;
-  color: var(--sky);
+  color: var(--label-future);
 }
 .constellation-labels .is-future .mono {
-  color: var(--muted);
+  color: var(--label-muted);
 }
 .c-detail {
-  color: var(--muted);
+  color: var(--label-muted);
   font-size: 0.8rem;
 }
 .constellation-labels .is-draft {
@@ -828,6 +832,9 @@
     box-shadow: 0 0 0 6px #23345f;
   }
   .constellation-labels {
+    color: var(--ink);
+    --label-muted: var(--muted);
+    --label-future: var(--accent);
     display: grid;
     gap: 1.2rem;
     margin-top: 2.5rem;
@@ -858,7 +865,7 @@
 
 /* 07 — Leave a Letter ------------------------------------------------ */
 .section-letter::before {
-  background: radial-gradient(45% 55% at 75% 50%, rgb(255 207 148 / 0.06), transparent 70%);
+  background: none;
 }
 .letter-grid {
   display: grid;
@@ -896,7 +903,7 @@
   transition: color 0.3s var(--ease);
 }
 .contact-list a:hover {
-  color: var(--sky);
+  color: var(--accent);
 }
 
 .envelope {
@@ -924,8 +931,8 @@
 .envelope-front {
   position: relative;
   background:
-    linear-gradient(152deg, transparent 49.6%, rgb(15 38 88 / 0.12) 50%, transparent 50.6%),
-    linear-gradient(28deg, transparent 49.6%, rgb(15 38 88 / 0.12) 50%, transparent 50.6%),
+    linear-gradient(152deg, transparent 49.6%, rgb(51 41 37 / 0.1) 50%, transparent 50.6%),
+    linear-gradient(28deg, transparent 49.6%, rgb(51 41 37 / 0.1) 50%, transparent 50.6%),
     var(--paper);
   perspective: 900px;
 }
@@ -937,7 +944,7 @@
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition: transform 0.6s var(--ease-in-out);
-  filter: drop-shadow(0 2px 2px rgb(15 38 88 / 0.2));
+  filter: drop-shadow(0 2px 2px rgb(51 41 37 / 0.15));
 }
 .envelope-seal {
   position: absolute;
@@ -947,7 +954,7 @@
   height: 2.6rem;
   margin: -1.3rem 0 0 -1.3rem;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #b04a56, #8e2f3b 60%, #6d2230);
+  background: radial-gradient(circle at 35% 35%, #8a6a61, var(--cocoa) 60%, #4e3a34);
   box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
   transition: opacity 0.3s var(--ease);
 }
@@ -957,7 +964,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  color: var(--gold);
+  color: var(--accent);
   font-size: 1.1rem;
 }
 .envelope-open {
@@ -965,12 +972,12 @@
   z-index: 2;
   align-self: end;
   margin-bottom: 1rem;
-  background: var(--navy);
-  border-color: var(--navy);
-  color: var(--cream);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
 }
 .envelope-open:hover {
-  background: var(--deep);
+  background: var(--surface);
 }
 .stationery {
   position: relative;
@@ -1027,14 +1034,14 @@
   /* boundary at 5.5:1 on paper (WCAG 1.4.11 asks for 3:1) */
   border: 1px solid var(--paper-muted);
   border-radius: 4px;
-  background: rgb(255 255 255 / 0.45);
+  background: var(--surface);
   color: var(--paper-ink);
   font: inherit;
   resize: vertical;
 }
 .stationery input:focus-visible,
 .stationery textarea:focus-visible {
-  outline: 2px solid var(--steel);
+  outline: 2px solid var(--accent);
   outline-offset: 1px;
 }
 .stationery ::placeholder {
@@ -1048,12 +1055,12 @@
 }
 .stationery .btn-primary {
   justify-self: start;
-  background: var(--navy);
-  border-color: var(--navy);
-  color: var(--cream);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
 }
 .stationery .btn-primary:hover {
-  background: var(--deep);
+  background: var(--surface);
 }
 .stationery-note {
   font-size: 0.875rem;
@@ -1063,13 +1070,14 @@
   color: var(--paper-ink);
 }
 .stationery :focus-visible {
-  outline-color: var(--steel);
+  outline-color: var(--accent);
 }
 
 /* footer -------------------------------------------------------------- */
 .site-footer {
   padding: var(--space-section) 0 3rem;
-  background: linear-gradient(var(--bg), #06122e);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
   text-align: center;
 }
 .footer-back {
@@ -1123,11 +1131,11 @@
 .footer-cat:hover,
 .footer-cat.is-awake {
   opacity: 1;
-  color: var(--gold);
+  color: var(--accent);
 }
 .footer-cat-note {
   min-height: 1.5em;
-  color: var(--gold);
+  color: var(--accent);
   font-family: var(--serif);
   font-style: italic;
 }
@@ -1177,7 +1185,7 @@
     --fade-y: linear-gradient(transparent, #000 8%, #000 22%, transparent 55%);
   }
   .atmosphere-layer {
-    filter: brightness(0.4);
+    opacity: 0.6;
   }
 }
 @media (prefers-reduced-motion: reduce) {

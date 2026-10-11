@@ -1,6 +1,6 @@
 /* 05 — After Hours --------------------------------------------------- */
 .section-after::before {
-  background: radial-gradient(50% 40% at 85% 5%, rgb(215 176 106 / 0.06), transparent 70%);
+  background: none;
 }
 .after-head {
   display: grid;
@@ -18,8 +18,8 @@
 .coffee-note {
   margin: 0;
   padding: 1.5rem 1.5rem 1.2rem;
-  background: #c9d0b8;
-  color: #1d2a1a;
+  background: var(--frost);
+  color: var(--ink);
   border-radius: 2px;
   box-shadow: var(--shadow);
   transform: rotate(2deg);
@@ -28,7 +28,7 @@
 }
 .coffee-note-cup {
   width: 2.2rem;
-  color: #3e4a36;
+  color: var(--muted);
 }
 .coffee-note blockquote {
   margin: 0;
@@ -41,16 +41,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #3e4a36;
+  color: var(--muted);
 }
 .coffee-note .icon-btn {
-  color: #1d2a1a;
+  color: var(--ink);
 }
 .coffee-note .icon-btn:hover {
-  border-color: rgb(29 42 26 / 0.4);
+  border-color: var(--line-strong);
 }
 .coffee-note :focus-visible {
-  outline-color: var(--navy);
+  outline-color: var(--ink);
 }
 
 /* theme gallery */
@@ -81,7 +81,7 @@
 }
 .tab-list [role="tab"][aria-selected="true"] {
   color: var(--ink);
-  border-bottom-color: var(--cream);
+  border-bottom-color: var(--ink);
 }
 .tab-count {
   font-family: var(--monof);
@@ -231,7 +231,7 @@
   border-color: var(--line-strong);
 }
 .theme-variant[aria-pressed="true"] {
-  border-color: var(--sky);
+  border-color: var(--accent);
   color: var(--ink);
   font-weight: 700;
 }
@@ -290,7 +290,7 @@
 .kaomoji {
   font-family: var(--sans);
   font-size: 0.85rem;
-  color: var(--gold);
+  color: var(--accent);
   white-space: nowrap;
 }
 .keepsake p {
@@ -305,7 +305,7 @@
 .keepsake-items li:not(:last-child)::after {
   content: "·";
   margin: 0 0.5em;
-  color: var(--sage);
+  color: var(--line-strong);
 }
 .keepsake-swatches {
   display: grid;

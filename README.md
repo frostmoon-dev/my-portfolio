@@ -79,11 +79,11 @@ styles/      tokens, base, header, stage, sections, after-hours, case pages
 
 ## Atmosphere photos
 
-Five sections have a faint photograph behind them — one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the sky (Still Becoming), the rain (Leave a Letter). The Workshop stays clean on purpose.
+Four sections have a faint photograph behind them — one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the rain (Leave a Letter). The Workshop stays clean on purpose; Still Becoming has its own night window.
 
 - All are from [Unsplash](https://unsplash.com), free to use under the Unsplash License. Photographers are credited in the footer and in `content/atmosphere.ts`.
-- The files in `public/images/atmosphere/` are already toned: each photo's brightness is mapped onto the site's own colours (midnight → dusty steel → cream), so they never bring in outside colours. `next/image` serves them as AVIF/WebP at the right size.
-- Each photo fades out toward the text and at the section edges, and drifts slightly slower than the page as you scroll (parallax). With reduced motion it stays still. On phones the photos only frame the top of the section and are dimmed further so text stays above 4.5:1 contrast.
+- The files in `public/images/atmosphere/` are already toned: each photo's brightness is mapped onto a pale frost-grey range, so they read like faded prints on the icy paper and never bring in outside colours. `next/image` serves them as AVIF/WebP at the right size.
+- Each photo fades out toward the text and at the section edges, and drifts slightly slower than the page as you scroll (parallax). With reduced motion it stays still. On phones the photos only frame the top of the section and are fainter, so text stays well above 4.5:1 contrast.
 - To change one: put a toned image in `public/images/atmosphere/`, then edit its entry (side, opacity, position, credit). To remove one, delete its entry.
 
 ## Signature details
@@ -96,15 +96,16 @@ Five sections have a faint photograph behind them — one per light in the room:
 
 ## Design
 
-- **Palette:** midnight navy `#0A1B42`, deep blue `#0F2658`, steel `#2D6AC8` (lines and fills only — it fails contrast as text), soft sky `#A9DCFF`, sage `#A3AD91`, warm cream `#E8DDC9`, antique gold `#D7B06A` (used sparingly).
-- **Type:** Instrument Serif (headings, handwriting), DM Sans (reading), IBM Plex Mono (indexes, timestamps — 13px minimum). Self-hosted by `next/font`.
+- **Palette (Frosted Ledger, light only):** icy paper `#EAF2F3`, surface `#F8FAFA`, coffee ink `#332925` (12.5:1), bark muted `#594841` (7.6:1), teal accent `#2F6470` (5.8:1), hairlines `#CCD6D6` / `#B9C7C9`. The 3D room, the constellation window and archive plates are night scenes set into the page, with their own `--night-*` tokens.
+- **Type:** Newsreader (display, italics), Atkinson Hyperlegible (reading, 17px), Atkinson Hyperlegible Mono (numbers, code). Self-hosted by `next/font`.
+- **Shapes:** square-ish 6px corners, hairline rules, numbered sections; the room sits in the hero as a framed picture (Fig. 1).
 - **Motion:** soft, weighted easing; no bounce. Only section headings and a few paper objects fade in; lists don't. Plain CSS transitions and one IntersectionObserver — no animation library. Tokens live in `styles/tokens.css`.
-- **Layout:** one continuous night background; sections differ only in where the light comes from (lamp, screen, window). Lists are set as type with hairlines, not cards. Each section's kicker names the room object it came from.
+- **Layout:** one continuous sheet of icy paper; a few sections carry a faint photograph of their light source. Lists are set as type with hairlines, not cards. Each section's kicker names the room object it came from.
 - **Phones and portrait tablets:** the room gets its own frame at the top; the introduction sits below it instead of over it.
 
 ## Accessibility
 
-- Night only, one palette. All text pairs meet WCAG 2.2 AA.
+- Light only, one palette (design direction 1b, Frosted Ledger). All text pairs meet WCAG 2.2 AA.
 - Skip link, landmarks, one `h1`, visible focus rings, 44px touch targets.
 - Arriving at a section from the room or the menu moves focus to its heading.
 - `prefers-reduced-motion`: no 3D animation (the painted room instead), no reveals, no page turns or envelope animation.

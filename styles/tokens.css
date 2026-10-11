@@ -1,37 +1,49 @@
 /* ------------------------------------------------------------------
-   The Midnight Atelier — design tokens.
-   One palette, night only. Every text pair is AA (4.5:1) or better;
-   steel blue is for lines and fills, never for text.
+   Frosted Ledger — design tokens (direction 1b, light only).
+   Icy paper, coffee ink, one teal accent. Hairline rules and 6px
+   corners. Ratios are against --bg: text 12.5, muted 7.6, accent 5.8.
+
+   The 3D room, the constellation window and the archive plates are
+   night scenes set into the page; they use the --night-* tokens.
    ------------------------------------------------------------------ */
 :root {
-  /* palette */
-  --navy: #0a1b42;
-  --deep: #0f2658;
-  --steel: #2d6ac8;
-  --sky: #a9dcff;
-  --sage: #a3ad91;
-  --cream: #e8ddc9;
-  --gold: #d7b06a;
+  /* palette (from the profile: #594841, #684F48, #D6E9ED, #CCD6D6) */
+  --ice: #eaf2f3;
+  --ice-surface: #f8fafa;
+  --ice-deep: #dfe9ea;
+  --frost: #d6e9ed;
+  --frost-line: #ccd6d6;
+  --frost-rule: #b9c7c9;
+  --coffee: #332925;
+  --bark: #594841;
+  --cocoa: #684f48;
+  --teal: #2f6470;
 
   /* roles */
-  --bg: var(--navy);
-  --bg-2: #0c1f4c;
-  --surface: var(--deep);
-  --surface-2: #132d66;
-  --ink: var(--cream);
-  --ink-soft: #cfc6b4;
-  --muted: #a7b0c4;
-  --accent: var(--sky);
-  --line: rgb(232 221 201 / 0.14);
-  --line-strong: rgb(232 221 201 / 0.32);
-  --focus: var(--sky);
+  --bg: var(--ice);
+  --surface: var(--ice-surface);
+  --surface-2: var(--ice-deep);
+  --ink: var(--coffee);
+  --ink-soft: #463a35;
+  --muted: var(--bark);
+  --accent: var(--teal);
+  --on-ink: var(--ice);
+  --line: var(--frost-line);
+  --line-strong: var(--frost-rule);
+  --focus: var(--teal);
 
-  /* paper: the notebook, cards, the letter */
-  --paper: #ece3d1;
-  --paper-2: #e2d6bf;
-  --paper-ink: #0f2658;
-  --paper-muted: #4a5878;
-  --paper-rule: rgb(45 106 200 / 0.18);
+  /* paper objects: the notebook, cards, the letter */
+  --paper: var(--ice-surface);
+  --paper-2: #f1f5f5;
+  --paper-ink: var(--coffee);
+  --paper-muted: var(--bark);
+  --paper-rule: rgb(47 100 112 / 0.14);
+
+  /* night scenes set into the page */
+  --night: #0a1b42;
+  --night-2: #0f2658;
+  --night-ink: #e7f1f3;
+  --night-muted: #ccd6d6;
 
   /* type */
   --serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
@@ -44,13 +56,13 @@
 
   --wrap: 84rem;
   --measure: 38rem;
-  /* one vertical rhythm for the whole page */
   --space-section: clamp(5rem, 9vw, 8rem);
   --space-block: clamp(3.5rem, 7vw, 5.5rem);
   --space-heading: clamp(2.5rem, 5vw, 4rem);
   --gutter: clamp(1rem, 4vw, 3rem);
-  --radius: 14px;
-  --shadow: 0 1px 2px rgb(2 8 26 / 0.4), 0 24px 48px -24px rgb(2 8 26 / 0.8);
+  /* square-ish corners, everywhere */
+  --radius: 6px;
+  --shadow: 0 1px 2px rgb(51 41 37 / 0.06), 0 12px 32px -16px rgb(51 41 37 / 0.18);
   --header-h: 4.25rem;
-  color-scheme: dark;
+  color-scheme: light;
 }

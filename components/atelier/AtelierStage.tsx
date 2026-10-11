@@ -116,60 +116,69 @@ export function AtelierStage() {
       data-focus={focused ? "" : undefined}
       id="top"
     >
-      <div className="stage-scene">
-        <AtelierPoster />
-        {use3D && (
-          <SceneBoundary onFail={() => setFailed(true)}>
-            <AtelierScene onReady={() => setReady(true)} onFail={() => setFailed(true)} />
-          </SceneBoundary>
-        )}
-        <div className="stage-shade" aria-hidden="true" />
-      </div>
-
-      <div className="stage-copy wrap">
-        <p className="stage-kicker mono">
-          {site.role} · {site.location}
-        </p>
-        <h1 className="stage-title">
-          <span className="line" style={{ "--i": 0 } as React.CSSProperties}>
-            {introduction.hello}
-          </span>
-        </h1>
-        {introduction.lines.map((l, i) => (
-          <p key={i} className="stage-line line" style={{ "--i": i + 1 } as React.CSSProperties}>
-            {l}
+      <div className="stage-grid wrap">
+        <div className="stage-copy">
+          <p className="stage-kicker line" style={{ "--i": 0 } as React.CSSProperties}>
+            {site.role} · {site.location}
           </p>
-        ))}
-
-        <nav className="stage-objects line" style={{ "--i": 4 } as React.CSSProperties} aria-label="Objects in the atelier">
-          <p className="stage-hint">{introduction.hint}</p>
-          <ul className="mono">
-            {atelierObjects.map((o) => (
-              <li key={o.id}>
-                <a
-                  href={`#${o.target}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    goToSection(o.target, o.id);
-                  }}
-                  onFocus={() => phase === "explore" && useAtelier.getState().setHovered(o.id)}
-                  onBlur={() => useAtelier.getState().setHovered(null)}
-                  onMouseEnter={() => phase === "explore" && useAtelier.getState().setHovered(o.id)}
-                  onMouseLeave={() => useAtelier.getState().setHovered(null)}
-                >
-                  <span className="stage-object-no">{o.label.split(" · ")[0]}</span>
-                  {o.name.replace(/^The /, "")}
-                </a>
-              </li>
+          <h1 className="stage-title line" style={{ "--i": 0 } as React.CSSProperties}>
+            {introduction.hello}
+          </h1>
+          <div className="stage-rule line" style={{ "--i": 1 } as React.CSSProperties}>
+            {introduction.lines.map((l, i) => (
+              <p key={i} className="stage-line">
+                {l}
+              </p>
             ))}
-          </ul>
-        </nav>
-      </div>
+          </div>
+          <div className="stage-actions line" style={{ "--i": 2 } as React.CSSProperties}>
+            <a href="#workshop" className="btn btn-primary">
+              {introduction.primary} <span aria-hidden="true">↓</span>
+            </a>
+            <a href="#letter" className="text-link">
+              {introduction.secondary}
+            </a>
+          </div>
+        </div>
 
-      <a href="#person" className="stage-scroll mono" aria-label="Scroll to The Person">
-        <span aria-hidden="true" />
-        scroll
-      </a>
+        <figure className="stage-figure line" style={{ "--i": 1 } as React.CSSProperties}>
+          <div className="stage-scene">
+            <AtelierPoster />
+            {use3D && (
+              <SceneBoundary onFail={() => setFailed(true)}>
+                <AtelierScene onReady={() => setReady(true)} onFail={() => setFailed(true)} />
+              </SceneBoundary>
+            )}
+          </div>
+          <figcaption className="stage-caption">
+            <p className="stage-hint">
+              <span className="stage-fig">Fig. 1</span> {introduction.hint}
+            </p>
+            <nav className="stage-objects" aria-label="Objects in the atelier">
+              <ul>
+                {atelierObjects.map((o) => (
+                  <li key={o.id}>
+                    <a
+                      href={`#${o.target}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        goToSection(o.target, o.id);
+                      }}
+                      onFocus={() => phase === "explore" && useAtelier.getState().setHovered(o.id)}
+                      onBlur={() => useAtelier.getState().setHovered(null)}
+                      onMouseEnter={() => phase === "explore" && useAtelier.getState().setHovered(o.id)}
+                      onMouseLeave={() => useAtelier.getState().setHovered(null)}
+                    >
+                      <span className="stage-object-no">{o.label.split(" · ")[0]}</span>
+                      {o.name.replace(/^The /, "")}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </figcaption>
+        </figure>
+      </div>
 
       {veil !== "gone" && (
         <div className={`veil${veil === "leaving" ? " is-leaving" : ""}`} role="dialog" aria-modal="false" aria-labelledby="veil-title">
