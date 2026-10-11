@@ -10,8 +10,9 @@ export function Archives() {
           id="archives"
           index="03"
           kicker="The Archives"
-          title={<>Things built, <em>kept in a drawer</em></>}
-          lead="Apps, tools and editor themes — most of them made after hours, all of them made properly. Open any entry for the full story."
+          title="Things I've built"
+          lead="Apps, tools and editor themes — most of them made after hours, all of them made properly. Each entry opens its own page."
+          layout="split"
         />
         <ArchiveIndex />
       </div>

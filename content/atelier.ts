@@ -15,7 +15,7 @@ export const introduction = {
     "A developer by profession. A curious soul by nature.",
     "I spend my days translating problems into solutions, and my quieter hours building little worlds of my own.",
   ],
-  hint: "Anything that glows faintly can be opened. Or use the menu — nothing here is hidden on purpose.",
+  hint: "Anything that glows faintly opens. Or choose from the list:",
 };
 
 /** Room objects, in keyboard order. `target` is a section id on the home page. */

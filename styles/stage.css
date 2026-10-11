@@ -77,7 +77,7 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgb(7 18 46 / 0.86) 0%, rgb(7 18 46 / 0.55) 30%, rgb(7 18 46 / 0) 56%),
+    linear-gradient(90deg, rgb(7 18 46 / 0.9) 0%, rgb(7 18 46 / 0.7) 28%, rgb(7 18 46 / 0.25) 46%, rgb(7 18 46 / 0) 60%),
     linear-gradient(0deg, var(--bg) 0%, rgb(10 27 66 / 0.6) 12%, rgb(10 27 66 / 0) 30%);
 }
 .stage-shade::after {
@@ -120,59 +120,50 @@
   letter-spacing: -0.015em;
 }
 .stage-line {
-  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-  color: var(--ink);
+  font-size: clamp(1.02rem, 1.3vw, 1.125rem);
+  color: var(--ink-soft);
 }
 .stage-line:first-of-type {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(1.4rem, 2.2vw, 1.8rem);
   line-height: 1.25;
-  color: var(--sky);
-}
-.stage-role {
-  color: var(--muted);
+  color: var(--ink);
 }
 .stage-objects {
-  max-width: 40rem !important;
+  max-width: 48rem !important;
   margin-top: 0.4rem;
 }
 .stage-hint {
   font-size: 0.875rem;
   color: var(--muted);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
 }
+/* the room's objects, as a quiet index rather than a row of buttons */
 .stage-objects ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0 1.1rem;
   list-style: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 .stage-objects a {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   min-height: 40px;
-  padding: 0 0.85rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: rgb(10 27 66 / 0.55);
-  backdrop-filter: blur(6px);
   color: var(--ink);
   text-decoration: none;
-  font-size: 0.875rem;
-  transition:
-    border-color 0.3s var(--ease),
-    background-color 0.3s var(--ease);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
-.stage-objects a .mono {
+.stage-object-no {
   color: var(--gold);
-  font-size: 0.7rem;
 }
 .stage-objects a:hover,
 .stage-objects a:focus-visible {
-  border-color: var(--sky);
-  background: rgb(15 38 88 / 0.85);
+  border-bottom-color: var(--sky);
 }
 
 /* the introduction arrives line by line once you enter */
@@ -333,8 +324,7 @@
   animation-delay: 1.6s;
 }
 .veil-inner > :nth-child(5),
-.veil-inner > :nth-child(6),
-.veil-inner > :nth-child(7) {
+.veil-inner > :nth-child(6) {
   animation-delay: 2.1s;
 }
 @keyframes veil-line {
@@ -372,9 +362,6 @@
   color: inherit;
   opacity: 0.6;
 }
-.veil-skip {
-  color: var(--muted);
-}
 .veil-status {
   display: inline-flex;
   align-items: center;
@@ -388,7 +375,6 @@
   height: 6px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
   opacity: 0.5;
 }
 .veil-status[data-ready]::before {
@@ -418,22 +404,46 @@
   opacity: 1;
 }
 
-@media (max-width: 760px) {
+/* phones and portrait tablets */
+@media (max-width: 900px) {
   .stage {
-    min-height: 680px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .stage-scene {
+    position: relative;
+    height: min(58svh, 640px);
+    min-height: 360px;
+    overflow: hidden;
   }
   .stage-shade {
-    background: linear-gradient(0deg, var(--bg) 0%, rgb(10 27 66 / 0.92) 42%, rgb(10 27 66 / 0.2) 70%, rgb(10 27 66 / 0) 100%);
+    background: linear-gradient(0deg, var(--bg) 0%, rgb(10 27 66 / 0) 35%);
+  }
+  .stage-shade::after {
+    display: none;
   }
   .stage-copy {
+    position: relative;
+    inset: auto;
     gap: 0.8rem;
-    padding-bottom: 4rem;
+    margin-top: -2.5rem;
+    padding-bottom: 3.5rem;
   }
   .stage-hint {
     display: none;
   }
   .stage-objects a {
     min-height: 44px;
+  }
+  .stage-objects {
+    align-self: stretch;
+  }
+  .stage-objects ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0 1rem;
   }
   .stage-scroll {
     display: none;

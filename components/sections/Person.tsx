@@ -11,10 +11,10 @@ export function Person() {
       <div className="wrap person-grid">
         <div className="person-side">
           <SectionHeading id="person" index="01" kicker="The Person" title={<>A notebook, <em>left open</em></>} lead={personLead} />
-          <blockquote className="identity" data-reveal>
+          <blockquote className="identity">
             <p>{site.identity}</p>
           </blockquote>
-          <aside className="index-card" aria-labelledby="now-title" data-reveal>
+          <aside className="index-card" aria-labelledby="now-title">
             <h3 id="now-title" className="mono">
               Right now <span className="muted">· {nowUpdated}</span>
             </h3>

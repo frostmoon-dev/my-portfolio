@@ -14,7 +14,7 @@ type Pose = { pos: THREE.Vector3; target: THREE.Vector3; fov: number };
 const v = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
 const WIDE: Pose = { pos: v(2.85, 3.0, 4.7), target: v(-0.95, 2.35, -1.9), fov: 38 };
-const TALL: Pose = { pos: v(0.7, 3.3, 5.4), target: v(0.1, 1.45, -1.7), fov: 50 };
+const TALL: Pose = { pos: v(0.6, 3.15, 5.6), target: v(-0.05, 2.15, -1.8), fov: 52 };
 const SQUARE: Pose = { pos: v(1.6, 3.2, 5.0), target: v(-0.1, 1.85, -1.8), fov: 46 };
 
 const FOCUS: Record<AtelierObjectId, { pos: THREE.Vector3; target: THREE.Vector3 }> = {

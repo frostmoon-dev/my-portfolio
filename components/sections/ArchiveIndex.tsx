@@ -19,7 +19,7 @@ export function ArchiveIndex() {
 
   return (
     <div className="archive">
-      <div className="archive-filters" role="group" aria-label="Filter the archives" data-reveal>
+      <div className="archive-filters" role="group" aria-label="Filter the archives">
         {projectFilters.map((f) => (
           <button key={f.id} type="button" aria-pressed={filter === f.id} onClick={() => setFilter(f.id)}>
             {f.label}
@@ -35,7 +35,7 @@ export function ArchiveIndex() {
           {shown.map((p) => {
             const no = String(projects.indexOf(p) + 1).padStart(2, "0");
             return (
-              <li key={p.id} className={`archive-entry${active === p.id ? " is-active" : ""}`} data-reveal>
+              <li key={p.id} className={`archive-entry${active === p.id ? " is-active" : ""}`}>
                 <Link
                   href={`/projects/${p.id}`}
                   onMouseEnter={() => setActive(p.id)}

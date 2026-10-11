@@ -16,7 +16,7 @@ export function Footer() {
           <span>
             © {new Date().getFullYear()} {site.name} · {site.handle}
           </span>
-          <span>Built by hand: Next.js, React Three Fiber, GSAP. No templates were harmed.</span>
+          <span>Made by hand, mostly after midnight. Next.js and React Three Fiber.</span>
         </p>
         <button type="button" className={`footer-cat${awake ? " is-awake" : ""}`} onClick={wakeCat} aria-label={catNote.label}>
           <span aria-hidden="true">{awake ? "(=^･ω･^=)" : "(=ᵕ ᴗ ᵕ=) zz"}</span>
@@ -24,6 +24,9 @@ export function Footer() {
         <p className="footer-cat-note" aria-live="polite">
           {awake ? catNote.woken : ""}
         </p>
+        <a href="#top" className="footer-back mono">
+          Back to the room ↑
+        </a>
       </div>
     </footer>
   );

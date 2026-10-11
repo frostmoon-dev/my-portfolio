@@ -1,8 +1,5 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
 import { Component, useCallback, useEffect, useRef, useState } from "react";
 import { arrival, atelierObjects, introduction } from "@/content/atelier";
@@ -13,8 +10,6 @@ import { useWebGL } from "@/hooks/useWebGL";
 import { goToSection } from "@/lib/navigate";
 import { useAtelier } from "@/store/atelier";
 import { AtelierPoster } from "./AtelierPoster";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const AtelierScene = dynamic(() => import("@/components/three/AtelierScene"), { ssr: false });
 
@@ -91,20 +86,26 @@ export function AtelierStage() {
   }, [phase, reduced, setPhase]);
 
   // As the page scrolls past the room, it dims and the camera drifts back.
-  useGSAP(
-    () => {
-      ScrollTrigger.create({
-        trigger: stage.current,
-        start: "top top",
-        end: "bottom top",
-        onUpdate: (self) => {
-          useAtelier.getState().setScroll(self.progress);
-          stage.current?.style.setProperty("--scroll", self.progress.toFixed(3));
-        },
-      });
-    },
-    { scope: stage },
-  );
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const el = stage.current;
+      if (!el) return;
+      const p = Math.min(1, Math.max(0, window.scrollY / el.offsetHeight));
+      useAtelier.getState().setScroll(p);
+      el.style.setProperty("--scroll", p.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <section
@@ -127,9 +128,7 @@ export function AtelierStage() {
 
       <div className="stage-copy wrap">
         <p className="stage-kicker mono">
-          <span>{arrival.title}</span>
-          <span aria-hidden="true"> · </span>
-          <span>{arrival.tagline}</span>
+          {site.role} · {site.location}
         </p>
         <h1 className="stage-title">
           <span className="line" style={{ "--i": 0 } as React.CSSProperties}>
@@ -141,13 +140,10 @@ export function AtelierStage() {
             {l}
           </p>
         ))}
-        <p className="stage-role mono line" style={{ "--i": 3 } as React.CSSProperties}>
-          {site.role} · {site.location}
-        </p>
 
         <nav className="stage-objects line" style={{ "--i": 4 } as React.CSSProperties} aria-label="Objects in the atelier">
           <p className="stage-hint">{introduction.hint}</p>
-          <ul>
+          <ul className="mono">
             {atelierObjects.map((o) => (
               <li key={o.id}>
                 <a
@@ -161,7 +157,8 @@ export function AtelierStage() {
                   onMouseEnter={() => phase === "explore" && useAtelier.getState().setHovered(o.id)}
                   onMouseLeave={() => useAtelier.getState().setHovered(null)}
                 >
-                  <span className="mono">{o.label.split(" · ")[0]}</span> {o.name.replace(/^The /, "")}
+                  <span className="stage-object-no">{o.label.split(" · ")[0]}</span>
+                  {o.name.replace(/^The /, "")}
                 </a>
               </li>
             ))}
@@ -190,9 +187,9 @@ export function AtelierStage() {
               {arrival.enter}
               <span className="mono" aria-hidden="true">]</span>
             </button>
-            <p className="veil-skip mono">or press Esc</p>
             <p className="veil-status mono" data-ready={!use3D || ready ? "" : undefined} aria-live="polite">
               {webgl === null || (use3D && !ready) ? "lighting the lamp…" : "the lamp is on"}
+              <span aria-hidden="true"> · esc to skip</span>
             </p>
           </div>
         </div>

@@ -1,7 +1,16 @@
 import { becomingLead, milestones } from "@/content/aspirations";
+import type { Milestone } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const isDev = process.env.NODE_ENV === "development";
+
+// Put a star's label on the side its lines don't cross: above when the
+// neighbouring stars sit lower on the page, below when they sit higher.
+function labelAbove(stars: Milestone[], i: number) {
+  const near = [stars[i - 1], stars[i + 1]].filter(Boolean);
+  const below = near.filter((n) => n.y > stars[i].y).length;
+  return below > near.length / 2 || (below === near.length / 2 && stars[i].y > 50);
+}
 
 // 06 — Still Becoming. The constellation outside the window, unfinished on purpose.
 export function StillBecoming() {
@@ -13,9 +22,9 @@ export function StillBecoming() {
           id="becoming"
           index="06"
           kicker="Still Becoming"
-          title={<>An unfinished <em>constellation</em></>}
-          lead={becomingLead}
-          align="center"
+          title={becomingLead}
+          lead="Some of these stars are lit. The rest are drawn in pencil, on purpose."
+          layout="center"
         />
         <figure className="constellation" data-reveal>
           <svg viewBox="0 0 1000 520" aria-hidden="true">
@@ -41,11 +50,11 @@ export function StillBecoming() {
             ))}
           </svg>
           <ol className="constellation-labels">
-            {stars.map((s) => (
+            {stars.map((s, i) => (
               <li
                 key={s.id}
                 style={{ left: `${s.x}%`, top: `${s.y}%` } as React.CSSProperties}
-                className={`${s.reached ? "" : "is-future"}${s.draft ? " is-draft" : ""}`}
+                className={[s.reached ? "" : "is-future", s.draft ? "is-draft" : "", labelAbove(stars, i) ? "is-above" : ""].join(" ").trim()}
               >
                 <span className="mono">{s.reached ? "reached" : "not yet"}</span>
                 <strong>{s.label}</strong>

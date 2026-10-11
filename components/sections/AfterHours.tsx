@@ -20,21 +20,23 @@ export function AfterHours() {
             id="after-hours"
             index="05"
             kicker="After Hours"
-            title={<>Not everything needs a <em>business requirement</em></>}
+            title="Not everything needs a business requirement."
             lead="Sometimes I just wanted to see if I could build it. This is where those things go, along with everything else I love."
           />
           <CoffeeNote />
         </div>
 
-        <h3 className="sub-heading" data-reveal>
-          Characters, as colour <span className="muted">— 110 VS Code themes. Pick one to watch it write a little X++.</span>
+        <h3 className="sub-heading">
+          Characters, as colour
+          <span className="sub-heading-note">110 VS Code themes, each built from one character&apos;s palette. Pick one to watch it write a little X++.</span>
         </h3>
-        <div data-reveal>
+        <div>
           <ThemeGallery themePalettes={themePalettes} />
         </div>
 
-        <h3 className="sub-heading" data-reveal>
-          Small loves, in no particular order
+        <h3 className="sub-heading">
+          Small loves
+          <span className="sub-heading-note">In no particular order.</span>
         </h3>
         <ul className="keepsakes">
           {tiles.map((t) =>
@@ -46,7 +48,7 @@ export function AfterHours() {
                 </p>
               </li>
             ) : (
-              <li key={t.id} className={`keepsake keepsake-${t.size ?? "sm"}`} data-reveal>
+              <li key={t.id} className={`keepsake keepsake-${t.size ?? "sm"}`}>
                 <h4>
                   {t.title}
                   {t.kaomoji && (
