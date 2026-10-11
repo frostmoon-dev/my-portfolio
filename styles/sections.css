@@ -1100,6 +1100,12 @@
   gap: 0.35rem;
   color: var(--muted);
 }
+.footer-credits a {
+  color: inherit;
+}
+.footer-credits a:hover {
+  color: var(--ink);
+}
 .footer-cat {
   min-height: 44px;
   padding: 0 1rem;
@@ -1124,4 +1130,59 @@
   color: var(--gold);
   font-family: var(--serif);
   font-style: italic;
+}
+
+/* Atmosphere photos ----------------------------------------------------
+   A toned photograph behind a section. It fades out toward the text and at
+   the section's top and bottom edges, so sections still read as one night. */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  --fade-y: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+  -webkit-mask-image: var(--fade-x), var(--fade-y);
+  mask-image: var(--fade-x), var(--fade-y);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.atmosphere-right {
+  --fade-x: linear-gradient(90deg, transparent 30%, #000 70%);
+}
+.atmosphere-left {
+  --fade-x: linear-gradient(270deg, transparent 30%, #000 70%);
+}
+.atmosphere-full {
+  --fade-x: radial-gradient(80% 90% at 50% 45%, #000 40%, transparent 100%);
+}
+.atmosphere-top {
+  --fade-x: linear-gradient(#000, #000);
+  --fade-y: linear-gradient(transparent, #000 10%, #000 25%, transparent 55%);
+}
+/* taller than the section, so the slow drift never shows an edge */
+.atmosphere-layer {
+  position: absolute;
+  inset: -14rem 0;
+  will-change: transform;
+}
+.atmosphere-layer img {
+  object-fit: cover;
+}
+@media (max-width: 900px) {
+  /* narrow screens: text spans the full width, so photos only frame the top */
+  .atmosphere-right,
+  .atmosphere-left {
+    --fade-x: linear-gradient(#000, #000);
+    --fade-y: linear-gradient(transparent, #000 8%, #000 22%, transparent 55%);
+  }
+  .atmosphere-layer {
+    filter: brightness(0.4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere-layer {
+    inset: 0;
+    will-change: auto;
+  }
 }

@@ -1,6 +1,7 @@
 import { now, nowUpdated } from "@/content/now";
 import { notebookPages, personLead } from "@/content/person";
 import { site } from "@/content/site";
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Notebook } from "./Notebook";
 
@@ -8,6 +9,7 @@ import { Notebook } from "./Notebook";
 export function Person() {
   return (
     <section id="person" className="section section-person" aria-labelledby="person-title">
+      <Atmosphere section="person" />
       <div className="wrap person-grid">
         <div className="person-side">
           <SectionHeading id="person" index="01" kicker="The Person" title={<>A notebook, <em>left open</em></>} lead={personLead} />

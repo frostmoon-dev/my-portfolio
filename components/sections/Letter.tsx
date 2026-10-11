@@ -1,4 +1,5 @@
 import { contacts } from "@/content/site";
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ExternalMark } from "@/components/ui/ExternalMark";
 import { Envelope } from "./Envelope";
@@ -8,6 +9,7 @@ export function Letter() {
   const email = contacts.find((c) => c.kind === "email")!;
   return (
     <section id="letter" className="section section-letter" aria-labelledby="letter-title">
+      <Atmosphere section="letter" />
       <div className="wrap letter-grid">
         <div>
           <SectionHeading

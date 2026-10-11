@@ -1,3 +1,4 @@
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ArchiveIndex } from "./ArchiveIndex";
 
@@ -5,6 +6,7 @@ import { ArchiveIndex } from "./ArchiveIndex";
 export function Archives() {
   return (
     <section id="archives" className="section section-archives" aria-labelledby="archives-title">
+      <Atmosphere section="archives" />
       <div className="wrap">
         <SectionHeading
           id="archives"

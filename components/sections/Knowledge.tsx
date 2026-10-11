@@ -1,5 +1,6 @@
 import { now } from "@/content/now";
 import { knowledgeShelves } from "@/content/skills";
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 // 04 — Acquired Knowledge. Read like the index of a card catalogue:
@@ -8,6 +9,7 @@ export function Knowledge() {
   const learning = now.find((n) => n.label.toLowerCase() === "learning");
   return (
     <section id="knowledge" className="section section-knowledge" aria-labelledby="knowledge-title">
+      <Atmosphere section="knowledge" />
       <div className="wrap">
         <SectionHeading
           id="knowledge"
