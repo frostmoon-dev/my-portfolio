@@ -5,6 +5,7 @@ import { useState } from "react";
 import { projectFilters, projects } from "@/content/projects";
 import type { ProjectKind } from "@/content/types";
 import { ProjectCover } from "@/components/ui/ProjectCover";
+import { useLedgerRows } from "@/hooks/useLedgerRows";
 
 const KIND_LABEL: Record<ProjectKind, string> = { web: "Web app", theme: "Editor theme", tool: "Tool" };
 
@@ -13,7 +14,14 @@ const KIND_LABEL: Record<ProjectKind, string> = { web: "Web app", theme: "Editor
 export function ArchiveIndex() {
   const [filter, setFilter] = useState<(typeof projectFilters)[number]["id"]>("all");
   const [active, setActive] = useState(projects[0].id);
-  const shown = projects.filter((p) => filter === "all" || p.kind === filter);
+  const byFilter = (f: typeof filter) => projects.filter((p) => f === "all" || p.kind === f);
+  // rows animate in like ledger lines; a filter change lifts them out first
+  const { listRef, rows: shown, swap } = useLedgerRows(byFilter("all"));
+  const choose = (f: typeof filter) => {
+    if (f === filter) return;
+    setFilter(f);
+    swap(byFilter(f));
+  };
   const activeProject = projects.find((p) => p.id === active) ?? projects[0];
   const activeNo = String(projects.indexOf(activeProject) + 1).padStart(2, "0");
 
@@ -21,21 +29,25 @@ export function ArchiveIndex() {
     <div className="archive">
       <div className="archive-filters" role="group" aria-label="Filter the archives">
         {projectFilters.map((f) => (
-          <button key={f.id} type="button" aria-pressed={filter === f.id} onClick={() => setFilter(f.id)}>
+          <button key={f.id} type="button" aria-pressed={filter === f.id} onClick={() => choose(f.id)}>
             {f.label}
           </button>
         ))}
         <p className="mono muted" aria-live="polite">
-          {shown.length} {shown.length === 1 ? "entry" : "entries"}
+          {byFilter(filter).length} {byFilter(filter).length === 1 ? "entry" : "entries"}
         </p>
       </div>
 
       <div className="archive-body">
-        <ol className="archive-list">
-          {shown.map((p) => {
+        <ol className="archive-list" ref={listRef} data-motion="ledger-rows">
+          {shown.map((p, i) => {
             const no = String(projects.indexOf(p) + 1).padStart(2, "0");
             return (
-              <li key={p.id} className={`archive-entry${active === p.id ? " is-active" : ""}`}>
+              <li
+                key={p.id}
+                className={`archive-entry${active === p.id ? " is-active" : ""}`}
+                style={{ "--i": i } as React.CSSProperties}
+              >
                 <Link
                   href={`/projects/${p.id}`}
                   onMouseEnter={() => setActive(p.id)}
