@@ -4,6 +4,7 @@ import { RoundedBox } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { coffeeNotes } from "@/content/atelier";
 import { useAtelier } from "@/store/atelier";
 import { Hotspot } from "./Hotspot";
 import { useMaterials } from "./materials";
@@ -240,7 +241,7 @@ function IcedCoffee() {
     if (ice.current) ice.current.position.y = Math.sin(clock.elapsedTime * 0.8) * 0.004;
   });
   return (
-    <Hotspot id="coffee" labelAt={[0, 0.7, 0]} glow="#d7b06a" position={[1.0, TOP, -1.12]}>
+    <Hotspot id="coffee" labelAt={[0, 0.78, 0]} glow="#d7b06a" position={[1.0, TOP, -1.12]} note={coffeeNotes[0]}>
       {/* coaster */}
       <mesh position={[0, 0.006, 0]} material={m.cream} castShadow receiveShadow>
         <cylinderGeometry args={[0.2, 0.2, 0.012, 32]} />

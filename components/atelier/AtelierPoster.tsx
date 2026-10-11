@@ -24,7 +24,7 @@ const books = [
 
 export function AtelierPoster() {
   return (
-    <svg className="atelier-poster" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="group" aria-label="An illustration of the midnight atelier. Each object opens a section.">
+    <svg className="atelier-poster" viewBox="-280 0 1880 1000" preserveAspectRatio="xMidYMid slice" role="group" aria-label="An illustration of the midnight atelier. Each object opens a section.">
       <defs>
         <linearGradient id="p-wall" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#0c1d47" />
@@ -53,8 +53,8 @@ export function AtelierPoster() {
         </clipPath>
       </defs>
 
-      <rect width="1600" height="1000" fill="url(#p-wall)" />
-      <rect y="900" width="1600" height="100" fill="#0b1636" />
+      <rect x="-280" width="1880" height="1000" fill="url(#p-wall)" />
+      <rect x="-280" y="900" width="1880" height="100" fill="#0b1636" />
       <ellipse cx="900" cy="950" rx="620" ry="60" fill="#1d2f5a" opacity="0.7" />
 
       {/* window */}

@@ -139,3 +139,16 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 520px) {
+  .site-header-inner {
+    gap: 0.5rem;
+  }
+  .wordmark {
+    font-size: 1.1rem;
+    gap: 0.45rem;
+  }
+  .clock {
+    padding: 0 0.2rem;
+  }
+}

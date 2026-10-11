@@ -275,12 +275,17 @@
   color: var(--gold);
   text-transform: uppercase;
 }
-.room-label:not(.is-hovered) {
-  padding: 0.2rem 0.55rem;
-  opacity: 0.85;
-}
-.room-label:not(.is-hovered) .room-label-name {
-  display: none;
+.room-label-note {
+  max-width: 15rem;
+  margin-top: 0.3rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--sky);
+  white-space: normal;
+  text-align: center;
 }
 @keyframes label-in {
   from {
@@ -328,7 +333,8 @@
   animation-delay: 1.6s;
 }
 .veil-inner > :nth-child(5),
-.veil-inner > :nth-child(6) {
+.veil-inner > :nth-child(6),
+.veil-inner > :nth-child(7) {
   animation-delay: 2.1s;
 }
 @keyframes veil-line {
@@ -368,6 +374,35 @@
 }
 .veil-skip {
   color: var(--muted);
+}
+.veil-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  min-height: 1.5em;
+}
+.veil-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  opacity: 0.5;
+}
+.veil-status[data-ready]::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .veil-status:not([data-ready])::before {
+    animation: flicker 1.4s ease-in-out infinite;
+  }
+}
+@keyframes flicker {
+  50% {
+    opacity: 0.15;
+  }
 }
 
 .dip {

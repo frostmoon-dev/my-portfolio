@@ -544,8 +544,7 @@
   transition: transform 0.5s var(--ease);
 }
 .archive-link:hover .archive-name,
-.archive-link:focus-visible .archive-name,
-.archive-entry.is-active .archive-name {
+.archive-link:focus-visible .archive-name {
   transform: translateX(10px);
   color: var(--sky);
 }
@@ -577,6 +576,10 @@
   }
   .archive-arrow {
     display: block;
+  }
+  .archive-entry.is-active .archive-name {
+    transform: translateX(10px);
+    color: var(--sky);
   }
   .archive-plate {
     display: block;
@@ -836,12 +839,17 @@
     transform: none;
     justify-items: start;
     text-align: left;
+    width: auto;
     max-width: none;
     padding-left: 1.4rem;
     border-left: 1px solid var(--line-strong);
   }
   .constellation-labels li.is-future {
     border-left-style: dashed;
+  }
+  .constellation-labels li > * {
+    padding: 0;
+    background: none;
   }
 }
 @media (min-width: 861px) and (max-width: 1100px) {

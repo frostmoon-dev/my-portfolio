@@ -7,7 +7,6 @@ import * as THREE from "three";
 import { atelierObjects } from "@/content/atelier";
 import type { AtelierObjectId } from "@/content/types";
 import { goToSection } from "@/lib/navigate";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useAtelier } from "@/store/atelier";
 
 type Props = {
@@ -18,15 +17,17 @@ type Props = {
   children: React.ReactNode;
   /** Called every frame with 0–1 hover amount, for objects that move when hovered. */
   onHover?: (amount: number) => void;
-  /** Extra action on click, e.g. the coffee note. */
+  /** Extra action on click. */
   onOpen?: () => void;
+  /** A small line shown under the label, e.g. the note under the coffee cup. */
+  note?: string;
 } & Omit<React.ComponentProps<"group">, "id">;
 
 const objects = new Map(atelierObjects.map((o) => [o.id, o]));
 
 // Wraps a room object so it can be hovered and opened. Materials are cloned
 // per hotspot so its glow never leaks onto shared materials.
-export function Hotspot({ id, labelAt, glow = "#a9dcff", children, onHover, onOpen, ...group }: Props) {
+export function Hotspot({ id, labelAt, glow = "#a9dcff", children, onHover, onOpen, note, ...group }: Props) {
   const ref = useRef<THREE.Group>(null);
   const mats = useRef<THREE.MeshStandardMaterial[]>([]);
   const amount = useRef(0);
@@ -73,13 +74,19 @@ export function Hotspot({ id, labelAt, glow = "#a9dcff", children, onHover, onOp
     onHover?.(a);
   });
 
+  // Over/out fire per child mesh, and not always in order, so count how many
+  // of this object's meshes the pointer is inside instead of trusting the last event.
+  const inside = useRef(0);
   const over = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
+    inside.current += 1;
     if (phase !== "explore") return;
     useAtelier.getState().setHovered(id);
     document.body.style.cursor = "pointer";
   };
   const out = () => {
+    inside.current = Math.max(0, inside.current - 1);
+    if (inside.current > 0) return;
     if (useAtelier.getState().hovered === id) useAtelier.getState().setHovered(null);
     document.body.style.cursor = "";
   };
@@ -91,18 +98,19 @@ export function Hotspot({ id, labelAt, glow = "#a9dcff", children, onHover, onOp
     goToSection(info.target, id);
   };
 
-  // On touch screens there is no hover, so every object keeps a small label.
-  const touch = useMediaQuery("(pointer: coarse)");
-  const showLabel = phase === "explore" && (hovered || touch);
+  // On touch screens the label shows while the camera travels to the object;
+  // the chips under the introduction are the always-visible way in.
+  const showLabel = phase === "explore" && hovered;
 
   return (
     <group ref={ref} {...group} onPointerOver={over} onPointerOut={out} onClick={click}>
       {children}
       {showLabel && (
-        <Html position={labelAt} center zIndexRange={[20, 10]} style={{ pointerEvents: "none" }}>
-          <span className={`room-label${hovered ? " is-hovered" : ""}`}>
+        <Html position={labelAt} center zIndexRange={[20, 10]} pointerEvents="none">
+          <span className="room-label">
             <span className="room-label-name">{info.name}</span>
             <span className="room-label-target">{info.label}</span>
+            {note && <span className="room-label-note">{note}</span>}
           </span>
         </Html>
       )}

@@ -191,6 +191,9 @@ export function AtelierStage() {
               <span className="mono" aria-hidden="true">]</span>
             </button>
             <p className="veil-skip mono">or press Esc</p>
+            <p className="veil-status mono" data-ready={!use3D || ready ? "" : undefined} aria-live="polite">
+              {webgl === null || (use3D && !ready) ? "lighting the lamp…" : "the lamp is on"}
+            </p>
           </div>
         </div>
       )}
