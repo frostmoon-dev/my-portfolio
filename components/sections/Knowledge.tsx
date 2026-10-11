@@ -3,7 +3,7 @@ import { knowledgeShelves } from "@/content/skills";
 import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-// 04 — Acquired Knowledge. Read like the index of a card catalogue:
+// 04 · Acquired Knowledge. Read like the index of a card catalogue:
 // shelf mark, shelf name, what's on it. No bars, no boxes.
 export function Knowledge() {
   const learning = now.find((n) => n.label.toLowerCase() === "learning");
@@ -14,9 +14,8 @@ export function Knowledge() {
         <SectionHeading
           id="knowledge"
           index="04"
-          kicker="Acquired Knowledge"
           title="What's on the shelf"
-          lead="No percentages — nobody is 87% of a language. Just what lives on each shelf, and what it's for."
+          lead="No percentages. Nobody is 87% of a language. Just what lives on each shelf, and what it's for."
           layout="split"
         />
         <ol className="catalogue" data-motion="ledger-rows" data-motion-auto data-rule="top">
@@ -45,7 +44,7 @@ export function Knowledge() {
                 <h3>Currently learning</h3>
                 <p>Spine not labelled yet.</p>
               </div>
-              <p className="hand catalogue-hand">{learning.value}</p>
+              <p className="catalogue-hand">{learning.value}</p>
             </li>
           )}
         </ol>

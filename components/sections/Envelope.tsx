@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 // The envelope opens, the stationery slides out. Sending opens your own mail
-// app with the letter filled in — there's no server, and nothing is stored.
+// app with the letter filled in. There's no server, and nothing is stored.
 export function Envelope({ to }: { to: string }) {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
@@ -25,7 +25,7 @@ export function Envelope({ to }: { to: string }) {
   }
 
   return (
-    <div className={`envelope${open ? " is-open" : ""}`} data-reveal>
+    <div className={`envelope${open ? " is-open" : ""}`}>
       <div className="envelope-back" aria-hidden="true" />
       <form className="stationery" onSubmit={send} aria-label="Write a letter" inert={!open}>
         <p className="mono stationery-to">To: Teha, at the atelier</p>

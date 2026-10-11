@@ -42,7 +42,7 @@ function Swatches({ t }: { t: ThemePalette }) {
   );
 }
 
-// An X++ snippet painted with the chosen theme — two halves of my work, in one window.
+// An X++ snippet painted with the chosen theme: two halves of my work, in one window.
 function MiniEditor({ t }: { t: ThemePalette }) {
   // Colours below 4.5:1 on the editor background are nudged until they pass.
   const ink = (hex: string) => ({ color: readable(hex, t.bg) });

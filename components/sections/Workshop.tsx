@@ -2,7 +2,7 @@ import { erpCapabilities, erpCases, erpIntro } from "@/content/erp";
 import { experience, workshopTools } from "@/content/experience";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-// 02 — The Workshop. The recruiter's section: plain, clear, complete.
+// 02 · The Workshop. The recruiter's section: plain, clear, complete.
 export function Workshop() {
   return (
     <section id="workshop" className="section section-workshop" aria-labelledby="workshop-title">
@@ -10,7 +10,6 @@ export function Workshop() {
         <SectionHeading
           id="workshop"
           index="02"
-          kicker="The Workshop"
           title="The day job"
           lead={erpIntro}
           layout="split"

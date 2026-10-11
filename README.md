@@ -1,8 +1,8 @@
 # The Midnight Atelier
 
-Teha's portfolio: a private workspace at 12:47 a.m. — an interactive 3D room, and the editorial pages behind it.
+Teha's portfolio: a private workspace at 12:47 a.m. An interactive 3D room, and the pages behind it.
 
-*Somewhere Between Dreams & Syntax.*
+Somewhere Between Dreams & Syntax.
 
 Next.js 16 (App Router) · React 19 · TypeScript · React Three Fiber · Tailwind CSS 4 · fully static · deploys on Vercel.
 
@@ -64,7 +64,7 @@ components/
              Hotspot (hover/click), CameraRig (directed camera), materials + paint (painterly shading)
   sections/  the seven sections
   layout/    header (menu, clock, sound), footer
-  ui/        shared pieces: SectionHeading, Reveals, ProjectCover, ThemeGallery, ExternalMark
+  ui/        shared pieces: SectionHeading, MotionLists, Atmosphere, ProjectCover, ThemeGallery, ExternalMark
 shaders/     rain on the glass, the sky, the moon
 store/       shared state between the room and the page (zustand)
 hooks/       WebGL check, reduced motion, quality guess, clock, rain sound
@@ -79,16 +79,16 @@ styles/      tokens, base, header, stage, sections, after-hours, case pages
 
 ## Motion modules
 
-Each effect lives in its own file under `styles/motion/` and is opt-in per element, so it can be tuned or removed alone. All of them animate only `transform` and `opacity`.
+Each effect lives in its own file under `styles/motion/` and is opt-in per element, so it can be tuned or removed alone. All of them animate only `transform` and `opacity`. Content never fades or slides in on scroll: text is always readable.
 
-- **Ledger rows** (`styles/motion/ledger-rows.css`): list rows rise into place one after another, then their hairline is ruled left to right. Used on What I do, Problems I've solved, The Archives, the Knowledge catalogue, Small loves and the contact links.
+- **Ledger rows** (`styles/motion/ledger-rows.css`): when a list scrolls into view, its hairlines are ruled in left to right, one after another. The rows themselves are visible the whole time. Used on What I do, Problems I've solved, The Archives, the Knowledge catalogue, Small loves and the contact links.
   - Turn it on for a list with `data-motion="ledger-rows"`. Add `data-rule="top"` for a rule above each row, `data-rule-style="dashed"` for a dashed one, and `data-motion-interactive` for link rows (hover sweep + press).
   - Static lists also take `data-motion-auto` and are driven by `components/ui/MotionLists.tsx`. The Archives list filters, so it uses `hooks/useLedgerRows.ts`, which adds the exit state (rows lift out before the new set enters).
-  - Speeds, distances and easing are the `--lr-*` variables at the top of the file. With reduced motion it becomes a short fade with no movement.
+  - Speeds, distances and easing are the `--lr-*` variables at the top of the file. With reduced motion the rules are drawn at once, and a filter swap is a short fade with no movement.
 
 ## Atmosphere photos
 
-Four sections have a faint photograph behind them — one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the rain (Leave a Letter). The Workshop stays clean on purpose; Still Becoming has its own night window.
+Four sections have a faint photograph behind them, one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the rain (Leave a Letter). The Workshop stays clean on purpose; Still Becoming has its own night window.
 
 - All are from [Unsplash](https://unsplash.com), free to use under the Unsplash License. Photographers are credited in the footer and in `content/atmosphere.ts`.
 - The files in `public/images/atmosphere/` are already toned: each photo's brightness is mapped onto a pale frost-grey range, so they read like faded prints on the icy paper and never bring in outside colours. `next/image` serves them as AVIF/WebP at the right size.
@@ -106,10 +106,11 @@ Four sections have a faint photograph behind them — one per light in the room:
 ## Design
 
 - **Palette (Frosted Ledger, light only):** icy paper `#EAF2F3`, surface `#F8FAFA`, coffee ink `#332925` (12.5:1), bark muted `#594841` (7.6:1), teal accent `#2F6470` (5.8:1), hairlines `#CCD6D6` / `#B9C7C9`. The 3D room, the constellation window and archive plates are night scenes set into the page, with their own `--night-*` tokens.
-- **Type:** Newsreader (display, italics), Atkinson Hyperlegible (reading, 17px), Atkinson Hyperlegible Mono (numbers, code). Self-hosted by `next/font`.
-- **Shapes:** square-ish 6px corners, hairline rules, numbered sections; the room sits in the hero as a framed picture (Fig. 1).
-- **Motion:** soft, weighted easing; no bounce. Only section headings and a few paper objects fade in; lists don't. Plain CSS transitions and one IntersectionObserver — no animation library. Tokens live in `styles/tokens.css`.
-- **Layout:** one continuous sheet of icy paper; a few sections carry a faint photograph of their light source. Lists are set as type with hairlines, not cards. Each section's kicker names the room object it came from.
+- **Type:** one family. Atkinson Hyperlegible Next (variable, 200 to 800) for everything: body 400 at 17px, headings 650, display 700. Atkinson Hyperlegible Mono for numbers, dates and code. No italics. Self-hosted by `next/font`.
+- **Shapes:** square-ish 6px corners, hairline rules, numbered sections (the number sits beside the title, not in a label above it). The room sits in the hero as a framed picture (Fig. 1).
+- **Motion:** soft, weighted easing; no bounce. Nothing fades in on scroll. Motion is kept for things that carry meaning: the room's camera, page turns, the envelope, hairlines being ruled, hover and press feedback. Plain CSS transitions, no animation library.
+- **Layout:** one continuous sheet of icy paper; a few sections carry a faint photograph of their light source. Lists are set as type with hairlines, not cards. Controls are words (Menu, Rain, Next page), not icons.
+- **Things this design avoids on purpose:** gradient text, purple-to-blue gradients, glass and blur, grain overlays, coloured accent borders on cards, badges above headlines, icon rows, emoji in headings, serif italic accents, fade-in on scroll, opacity-fade hovers, em-dash-heavy copy.
 - **Phones and portrait tablets:** the room gets its own frame at the top; the introduction sits below it instead of over it.
 
 ## Accessibility
@@ -117,7 +118,7 @@ Four sections have a faint photograph behind them — one per light in the room:
 - Light only, one palette (design direction 1b, Frosted Ledger). All text pairs meet WCAG 2.2 AA.
 - Skip link, landmarks, one `h1`, visible focus rings, 44px touch targets.
 - Arriving at a section from the room or the menu moves focus to its heading.
-- `prefers-reduced-motion`: no 3D animation (the painted room instead), no reveals, no page turns or envelope animation.
+- `prefers-reduced-motion`: no 3D animation (the painted room instead), no page turns or envelope animation, rules drawn at once.
 - The arrival screen is skippable (button or Esc) and is not shown again in the same tab, or when you open a link to a section.
 
 ## Deploy

@@ -118,20 +118,20 @@ export function AtelierStage() {
     >
       <div className="stage-grid wrap">
         <div className="stage-copy">
-          <p className="stage-kicker line" style={{ "--i": 0 } as React.CSSProperties}>
-            {site.role} · {site.location}
-          </p>
-          <h1 className="stage-title line" style={{ "--i": 0 } as React.CSSProperties}>
+          <h1 className="stage-title">
             {introduction.hello}
+            <span className="stage-role">
+              {site.role}, {site.location}.
+            </span>
           </h1>
-          <div className="stage-rule line" style={{ "--i": 1 } as React.CSSProperties}>
+          <div className="stage-rule">
             {introduction.lines.map((l, i) => (
               <p key={i} className="stage-line">
                 {l}
               </p>
             ))}
           </div>
-          <div className="stage-actions line" style={{ "--i": 2 } as React.CSSProperties}>
+          <div className="stage-actions">
             <a href="#workshop" className="btn btn-primary">
               {introduction.primary} <span aria-hidden="true">↓</span>
             </a>
@@ -141,7 +141,7 @@ export function AtelierStage() {
           </div>
         </div>
 
-        <figure className="stage-figure line" style={{ "--i": 1 } as React.CSSProperties}>
+        <figure className="stage-figure">
           <div className="stage-scene">
             <AtelierPoster />
             {use3D && (
@@ -152,7 +152,7 @@ export function AtelierStage() {
           </div>
           <figcaption className="stage-caption">
             <p className="stage-hint">
-              <span className="stage-fig">Fig. 1</span> {introduction.hint}
+              <span className="stage-fig mono">Fig. 1</span> {introduction.hint}
             </p>
             <nav className="stage-objects" aria-label="Objects in the atelier">
               <ul>
@@ -183,20 +183,16 @@ export function AtelierStage() {
       {veil !== "gone" && (
         <div className={`veil${veil === "leaving" ? " is-leaving" : ""}`} role="dialog" aria-modal="false" aria-labelledby="veil-title">
           <div className="veil-inner">
-            <p className="veil-time mono" aria-hidden="true">
-              00:47
-            </p>
             <h2 id="veil-title" className="veil-title">
               {arrival.title}
             </h2>
             <p className="veil-tagline">{arrival.tagline}</p>
             <p className="veil-line">{arrival.line}</p>
             <button ref={enterBtn} type="button" className="btn btn-primary veil-enter" onClick={enter}>
-              <span className="mono" aria-hidden="true">[</span>
               {arrival.enter}
-              <span className="mono" aria-hidden="true">]</span>
             </button>
             <p className="veil-status mono" data-ready={!use3D || ready ? "" : undefined} aria-live="polite">
+              <span aria-hidden="true">00:47 · </span>
               {webgl === null || (use3D && !ready) ? "lighting the lamp…" : "the lamp is on"}
               <span aria-hidden="true"> · esc to skip</span>
             </p>

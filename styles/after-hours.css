@@ -1,4 +1,4 @@
-/* 05 — After Hours --------------------------------------------------- */
+/* 05 · After Hours --------------------------------------------------- */
 .section-after::before {
   background: none;
 }
@@ -33,21 +33,27 @@
 .coffee-note blockquote {
   margin: 0;
 }
-.coffee-note .hand {
-  font-size: 1.45rem;
-  line-height: 1.25;
+.coffee-note-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 .coffee-note figcaption {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 0 1rem;
   color: var(--muted);
 }
-.coffee-note .icon-btn {
-  color: var(--ink);
+.coffee-note .text-btn {
+  padding-inline: 0;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
-.coffee-note .icon-btn:hover {
-  border-color: var(--line-strong);
+.coffee-note .text-btn:hover {
+  border-color: transparent;
 }
 .coffee-note :focus-visible {
   outline-color: var(--ink);
@@ -205,8 +211,8 @@
   border-bottom: 1px solid var(--line);
 }
 .theme-character-name {
-  font-family: var(--serif);
-  font-size: 1.2rem;
+  font-weight: var(--weight-heading);
+  font-size: 1.125rem;
 }
 .theme-variants {
   display: flex;
@@ -257,7 +263,7 @@
   font-weight: 600;
 }
 
-/* small loves: notes set in columns, like a margin — no boxes */
+/* small loves: notes set in columns, like a margin, no boxes */
 .keepsakes {
   columns: 1;
   column-gap: clamp(2rem, 5vw, 4rem);
@@ -283,15 +289,8 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  font-family: var(--serif);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
-}
-.kaomoji {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  color: var(--accent);
-  white-space: nowrap;
 }
 .keepsake p {
   color: var(--ink-soft);

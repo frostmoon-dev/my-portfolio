@@ -50,7 +50,6 @@ export type SkillGroup = { name: string; skills: string[] };
 export type LikeTile = {
   id: string;
   title: string;
-  kaomoji?: string;
   body?: string;
   items?: string[];
   /** Optional colour chips (hex), e.g. for the favourite palette tile. */

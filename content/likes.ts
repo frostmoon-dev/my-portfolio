@@ -10,14 +10,12 @@ export const likes: LikeTile[] = [
   {
     id: "cats",
     title: "Cats",
-    kaomoji: "ฅ^•ﻌ•^ฅ",
     body: "Cats, always. The best colleagues: quiet, warm, and never ask for a status update.",
     size: "sm",
   },
   {
     id: "coffee",
     title: "Iced coffee",
-    kaomoji: "( ˘▽˘)っ☕",
     body: "The official fuel. Status: caffeinated.",
     size: "sm",
   },
@@ -30,7 +28,6 @@ export const likes: LikeTile[] = [
   {
     id: "writing",
     title: "Characters & AUs",
-    kaomoji: "( ⸝⸝´꒳`⸝⸝)",
     body: "Character creation and alternate-universe stories: taking someone I love and asking who they'd be somewhere else. Half my side projects exist so they have somewhere to talk.",
     size: "md",
   },
@@ -45,7 +42,7 @@ export const likes: LikeTile[] = [
   {
     id: "palette",
     title: "Favourite palette",
-    body: "Warm browns and icy moon tones — the same colours as my GitHub profile, and this site.",
+    body: "Warm browns and icy moon tones. The same colours as my GitHub profile, and this site.",
     swatches: [
       { name: "Bark", hex: "#594841" },
       { name: "Cocoa", hex: "#684F48" },

@@ -20,7 +20,7 @@ export const projects: Project[] = [
     codename: "fgo-bot-garden",
     kind: "web",
     purpose:
-      "A Fate/Grand Order–style visual-novel chat: you write your lines, and AI characters answer with dialogue, narration and sprite expression changes.",
+      "A visual-novel chat in the style of Fate/Grand Order. You write your lines, and AI characters answer with dialogue, narration and sprite expression changes.",
     proud:
       "Works with any OpenAI-compatible API, streamed. The API key is stored encrypted and never reaches the browser. The reply parser, lorebook, prompt builder, summaries and SSE stream all have tests.",
     stack: ["Next.js 16", "TypeScript", "Prisma 7", "Supabase Postgres", "Tailwind 4", "Vitest"],
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     purpose:
       "A local-first tracker for money, food, weight and work tasks, with BB (Fate/Extra CCC) peeking in to judge every entry.",
     proud:
-      "Every number — budgets, calorie targets, pace — is calculated by the app, never by the AI. Without an API key, BB falls back to her built-in lines, so the app still works.",
+      "The app calculates every number (budgets, calorie targets, pace). The AI never does. Without an API key, BB falls back to her built-in lines, so the app still works.",
     stack: ["Next.js", "TypeScript", "Vitest", "NVIDIA / OpenRouter API"],
     isPrivate: true,
   },
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     codename: "genshin-hsr-themes",
     kind: "theme",
     purpose: "VS Code colour themes inspired by Genshin Impact and Honkai: Star Rail characters.",
-    proud: "46 themes — light, dark and high-contrast — each tuned from one character's palette.",
+    proud: "46 themes in light, dark and high-contrast, each tuned from one character's palette.",
     stack: ["VS Code", "JSON themes"],
     links: [
       { label: "VS Code Marketplace", href: "https://marketplace.visualstudio.com/items?itemName=frostmoon-dev.genshin-hsr-themes" },

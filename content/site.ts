@@ -11,7 +11,7 @@ export const site = {
   timeZone: "Asia/Kuala_Lumpur",
   url: "https://frostmoon.vercel.app",
   atelier: "The Midnight Atelier",
-  title: "The Midnight Atelier — Teha, D365 F&O developer & builder of small worlds",
+  title: "Teha, D365 F&O developer · The Midnight Atelier",
   description:
     "Teha (Fatihah), a.k.a. frostmoon: Microsoft Dynamics 365 Finance & Operations developer (X++) in Malaysia, who builds chat apps, editor themes and small tools in the quiet hours.",
   tagline: "Somewhere Between Dreams & Syntax.",

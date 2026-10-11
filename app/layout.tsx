@@ -1,29 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Atkinson_Hyperlegible, Atkinson_Hyperlegible_Mono, Newsreader } from "next/font/google";
+import { Atkinson_Hyperlegible_Mono, Atkinson_Hyperlegible_Next } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Frosted Ledger type: Newsreader for display (strong italics), Atkinson
-// Hyperlegible for reading at 17px, and its mono sibling for numbers and code.
-const serif = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const sans = Atkinson_Hyperlegible({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+// One family for everything. Atkinson Hyperlegible Next was drawn by the
+// Braille Institute so letters that look alike (I l 1, O 0, rn m) stay
+// distinct. It is variable (200-800), so headings get weight, not a second
+// font. The mono sibling sets numbers, dates and code.
+// Next.js has no metrics for this font, so it cannot build a size-adjusted
+// fallback. Verdana is close in width and x-height, which keeps the swap calm.
+const sans = Atkinson_Hyperlegible_Next({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
+  fallback: ["Verdana", "system-ui", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 const mono = Atkinson_Hyperlegible_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  fallback: ["ui-monospace", "Menlo", "monospace"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -51,11 +50,11 @@ const arrivalInit = `try{if(sessionStorage.getItem("atelier-visited")==="1"||loc
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: arrivalInit }} />
         <noscript>
-          <style>{`.veil{display:none!important}.stage .line,.stage-kicker{opacity:1!important;transform:none!important;filter:none!important}.envelope .stationery{transform:none!important;opacity:1!important}.envelope-open{display:none}`}</style>
+          <style>{`.veil{display:none!important}.envelope .stationery{transform:none!important;opacity:1!important}.envelope-open{display:none}`}</style>
         </noscript>
       </head>
       <body>

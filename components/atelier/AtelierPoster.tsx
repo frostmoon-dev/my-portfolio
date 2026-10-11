@@ -11,7 +11,7 @@ function Spot({ id, children }: { id: AtelierObjectId; children: React.ReactNode
   const o = info.get(id)!;
   return (
     <a href={`#${o.target}`} className="poster-spot" aria-label={`${o.name}: ${o.label}`}>
-      <title>{`${o.name} — ${o.label}`}</title>
+      <title>{`${o.name}: ${o.label}`}</title>
       {children}
     </a>
   );

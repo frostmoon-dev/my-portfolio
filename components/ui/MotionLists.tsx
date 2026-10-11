@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 // Drives every static list marked  data-motion="ledger-rows" data-motion-auto
 // (see styles/motion/ledger-rows.css). Lists below the fold wait in "pre"
-// and enter when scrolled to; lists already on screen are left as they are.
-// Without JS nothing is hidden.
+// (rows visible, rules undrawn) and have their rules drawn when scrolled to.
+// Lists already on screen are left as they are. Nothing is ever hidden.
 export function MotionLists() {
   useEffect(() => {
     const lists = Array.from(document.querySelectorAll<HTMLElement>('[data-motion="ledger-rows"][data-motion-auto]'));

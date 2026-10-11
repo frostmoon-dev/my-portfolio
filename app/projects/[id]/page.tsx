@@ -40,11 +40,11 @@ export default async function ProjectPage(props: { params: Promise<{ id: string 
         </nav>
 
         <header className="case-header">
-          <p className="mono case-kicker">
+          <h1>{p.name}</h1>
+          <p className="mono case-meta">
             No. {no} · {KIND[p.kind]}
             {p.isPrivate && " · private repo"}
           </p>
-          <h1>{p.name}</h1>
           {p.codename && p.codename !== p.name && <p className="mono muted">{p.codename}</p>}
           <p className="case-purpose">{p.purpose}</p>
         </header>

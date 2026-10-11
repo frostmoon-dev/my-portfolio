@@ -5,14 +5,14 @@ import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Notebook } from "./Notebook";
 
-// 01 — The Person. Opening someone's private notebook.
+// 01 · The Person. Opening someone's private notebook.
 export function Person() {
   return (
     <section id="person" className="section section-person" aria-labelledby="person-title">
       <Atmosphere section="person" />
       <div className="wrap person-grid">
         <div className="person-side">
-          <SectionHeading id="person" index="01" kicker="The Person" title={<>A notebook, <em>left open</em></>} lead={personLead} />
+          <SectionHeading id="person" index="01" title="A notebook, left open" lead={personLead} />
           <blockquote className="identity">
             <p>{site.identity}</p>
           </blockquote>

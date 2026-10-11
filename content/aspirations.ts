@@ -3,7 +3,7 @@ import type { Milestone } from "./types";
 // "Still Becoming": the unfinished constellation outside the window.
 // Reached stars are solid. Future stars are drawn as unfinished outlines.
 // x and y are 0–100. Stars are joined in the order listed.
-// `draft: true` stars only show while running `npm run dev` — use them for ideas you haven't decided on.
+// `draft: true` stars only show while running `npm run dev` Use them for ideas you haven't decided on.
 
 export const becomingLead = "I am made of everything I have yet to become.";
 
