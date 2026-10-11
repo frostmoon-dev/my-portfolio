@@ -6,3 +6,5 @@
 @import "../styles/sections.css";
 @import "../styles/after-hours.css";
 @import "../styles/case.css";
+/* motion modules: each one is opt-in per element and can be removed alone */
+@import "../styles/motion/ledger-rows.css";

@@ -38,7 +38,7 @@ export function AfterHours() {
           Small loves
           <span className="sub-heading-note">In no particular order.</span>
         </h3>
-        <ul className="keepsakes">
+        <ul className="keepsakes" data-motion="ledger-rows" data-motion-auto data-rule="top">
           {tiles.map((t) =>
             isEmpty(t) ? (
               <li key={t.id} className={`keepsake keepsake-${t.size ?? "sm"} keepsake-empty`}>

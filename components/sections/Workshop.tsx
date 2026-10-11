@@ -49,7 +49,7 @@ export function Workshop() {
         <h3 className="sub-heading">
           What I do
         </h3>
-        <dl className="capabilities">
+        <dl className="capabilities" data-motion="ledger-rows" data-motion-auto data-rule="top">
           {erpCapabilities.map((c, i) => (
             <div key={c.title}>
               <dt>
@@ -65,7 +65,7 @@ export function Workshop() {
           Problems I&apos;ve solved
           <span className="sub-heading-note">A journal, kept generic on purpose: no client names, no client code.</span>
         </h3>
-        <ol className="journal">
+        <ol className="journal" data-motion="ledger-rows" data-motion-auto data-rule-style="dashed">
           {erpCases.map((c) => (
             <li key={c.ref} className="journal-entry">
               <p className="mono journal-ref">{c.ref}</p>

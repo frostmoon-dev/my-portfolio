@@ -77,6 +77,15 @@ styles/      tokens, base, header, stage, sections, after-hours, case pages
 - **Fallbacks.** The painted 2D atelier renders first (also without JavaScript). The 3D room fades in over it only when WebGL works and reduced motion is off. If the scene errors or the GPU context is lost, the painting stays.
 - **Performance.** The 3D code is a separate bundle, loaded after the page. Pixel ratio is capped per device; shadows are desktop-only; dust is off on low-power devices; quality drops a tier if the frame rate struggles; rendering stops when the room is off screen or the tab is hidden.
 
+## Motion modules
+
+Each effect lives in its own file under `styles/motion/` and is opt-in per element, so it can be tuned or removed alone. All of them animate only `transform` and `opacity`.
+
+- **Ledger rows** (`styles/motion/ledger-rows.css`): list rows rise into place one after another, then their hairline is ruled left to right. Used on What I do, Problems I've solved, The Archives, the Knowledge catalogue, Small loves and the contact links.
+  - Turn it on for a list with `data-motion="ledger-rows"`. Add `data-rule="top"` for a rule above each row, `data-rule-style="dashed"` for a dashed one, and `data-motion-interactive` for link rows (hover sweep + press).
+  - Static lists also take `data-motion-auto` and are driven by `components/ui/MotionLists.tsx`. The Archives list filters, so it uses `hooks/useLedgerRows.ts`, which adds the exit state (rows lift out before the new set enters).
+  - Speeds, distances and easing are the `--lr-*` variables at the top of the file. With reduced motion it becomes a short fade with no movement.
+
 ## Atmosphere photos
 
 Four sections have a faint photograph behind them — one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the rain (Leave a Letter). The Workshop stays clean on purpose; Still Becoming has its own night window.

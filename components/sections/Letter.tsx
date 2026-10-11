@@ -19,7 +19,7 @@ export function Letter() {
             title="Leave a letter on the desk"
             lead="For work, for a project, or to tell me about a character you love. I read everything, usually with coffee."
           />
-          <ul className="contact-list">
+          <ul className="contact-list" data-motion="ledger-rows" data-motion-auto data-motion-interactive>
             {contacts.map((c) => (
               <li key={c.kind}>
                 <span className="mono contact-kind">{c.label}</span>

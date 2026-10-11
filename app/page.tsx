@@ -8,6 +8,7 @@ import { Letter } from "@/components/sections/Letter";
 import { Person } from "@/components/sections/Person";
 import { StillBecoming } from "@/components/sections/StillBecoming";
 import { Workshop } from "@/components/sections/Workshop";
+import { MotionLists } from "@/components/ui/MotionLists";
 import { Reveals } from "@/components/ui/Reveals";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       </main>
       <Footer />
       <Reveals />
+      <MotionLists />
     </>
   );
 }
