@@ -29,7 +29,7 @@ export function Footer() {
                 <a href={p!.source} rel="noopener">
                   {p!.photographer}
                 </a>
-                {i < all.length - 1 ? ", " : "."}
+                {i < all.length - 1 ? ", " : p!.photographer.endsWith(".") ? "" : "."}
               </span>
             ))}
           </span>

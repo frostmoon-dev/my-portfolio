@@ -13,7 +13,8 @@ import { useAtelier } from "@/store/atelier";
 type Pose = { pos: THREE.Vector3; target: THREE.Vector3; fov: number };
 const v = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
-const WIDE: Pose = { pos: v(2.85, 3.0, 4.7), target: v(-0.95, 2.35, -1.9), fov: 38 };
+// The room now hangs in its own frame beside the words, so it is framed centred.
+const WIDE: Pose = { pos: v(2.6, 3.05, 5.0), target: v(-0.3, 2.2, -1.9), fov: 40 };
 const TALL: Pose = { pos: v(0.6, 3.15, 5.6), target: v(-0.05, 2.15, -1.8), fov: 52 };
 const SQUARE: Pose = { pos: v(1.6, 3.2, 5.0), target: v(-0.1, 1.85, -1.8), fov: 46 };
 

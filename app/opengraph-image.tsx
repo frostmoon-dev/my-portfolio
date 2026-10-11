@@ -5,7 +5,8 @@ export const alt = `${site.atelier} — ${site.name}, ${site.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// The share card: the atelier window at night, the name, the tagline.
+// The share card in the Frosted Ledger style: icy paper, coffee ink, a
+// hairline rule, and the night room as a small framed picture.
 export default async function Image() {
   return new ImageResponse(
     (
@@ -17,32 +18,33 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "flex-end",
           padding: "72px 88px",
-          background: "linear-gradient(160deg, #0F2658 0%, #0A1B42 60%, #071433 100%)",
-          color: "#E8DDC9",
+          background: "#EAF2F3",
+          color: "#332925",
           position: "relative",
         }}
       >
-        {/* window */}
         <div
           style={{
             position: "absolute",
             right: 88,
             top: 72,
             width: 360,
-            height: 280,
+            height: 270,
             display: "flex",
-            border: "10px solid #23345F",
-            background: "linear-gradient(#071231, #12285A)",
+            borderRadius: 6,
+            border: "1px solid #B9C7C9",
+            background: "linear-gradient(#071231, #0F2658)",
           }}
         >
-          <div style={{ position: "absolute", left: 170, top: 0, width: 8, height: 260, background: "#23345F", display: "flex" }} />
-          <div style={{ position: "absolute", left: 0, top: 140, width: 340, height: 8, background: "#23345F", display: "flex" }} />
-          <div style={{ position: "absolute", right: 40, top: 30, width: 56, height: 56, borderRadius: 56, boxShadow: "-16px 8px 0 0 #E8DDC9", display: "flex" }} />
+          <div style={{ position: "absolute", left: 175, top: 0, width: 6, height: 268, background: "#1c2c55", display: "flex" }} />
+          <div style={{ position: "absolute", left: 0, top: 140, width: 358, height: 6, background: "#1c2c55", display: "flex" }} />
+          <div style={{ position: "absolute", right: 46, top: 34, width: 50, height: 50, borderRadius: 50, boxShadow: "-14px 7px 0 0 #E7F1F3", display: "flex" }} />
         </div>
-        <div style={{ fontSize: 24, letterSpacing: 8, color: "#D7B06A", display: "flex" }}>THE MIDNIGHT ATELIER</div>
-        <div style={{ fontSize: 96, marginTop: 12, display: "flex" }}>{site.name}</div>
-        <div style={{ fontSize: 36, color: "#A9DCFF", marginTop: 8, display: "flex" }}>{site.tagline}</div>
-        <div style={{ fontSize: 26, color: "#A7B0C4", marginTop: 18, display: "flex" }}>{site.role}</div>
+        <div style={{ fontSize: 22, letterSpacing: 4, color: "#594841", display: "flex" }}>THE MIDNIGHT ATELIER</div>
+        <div style={{ fontSize: 120, marginTop: 8, display: "flex", letterSpacing: -3 }}>{site.name}</div>
+        <div style={{ width: 640, height: 1, background: "#B9C7C9", marginTop: 16, display: "flex" }} />
+        <div style={{ fontSize: 34, color: "#332925", marginTop: 20, fontStyle: "italic", display: "flex" }}>{site.tagline}</div>
+        <div style={{ fontSize: 24, color: "#2F6470", marginTop: 14, display: "flex" }}>{site.role}</div>
       </div>
     ),
     size,

@@ -1,28 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { Atkinson_Hyperlegible, Atkinson_Hyperlegible_Mono, Newsreader } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Instrument Serif for the expressive headings, DM Sans for reading (warmer
-// and calmer at body size than a geometric sans), IBM Plex Mono for indexes
-// and timestamps — closer to a typewriter than a code editor.
-const serif = Instrument_Serif({
+// Frosted Ledger type: Newsreader for display (strong italics), Atkinson
+// Hyperlegible for reading at 17px, and its mono sibling for numbers and code.
+const serif = Newsreader({
   subsets: ["latin"],
-  weight: "400",
   style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
 });
 
-const sans = DM_Sans({
+const sans = Atkinson_Hyperlegible({
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Atkinson_Hyperlegible_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -43,8 +42,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a1b42",
-  colorScheme: "dark",
+  themeColor: "#eaf2f3",
+  colorScheme: "light",
 };
 
 // Runs before first paint: returning visitors (this tab) and deep links skip the arrival veil.

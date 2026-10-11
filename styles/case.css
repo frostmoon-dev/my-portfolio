@@ -3,7 +3,6 @@
   min-height: 100svh;
   padding: clamp(2rem, 6vw, 4rem) 0 4rem;
   background:
-    radial-gradient(50% 40% at 80% 0%, rgb(215 176 106 / 0.07), transparent 70%),
     var(--bg);
 }
 .case-wrap {
@@ -25,7 +24,7 @@
   text-decoration: none;
 }
 .case-nav a:hover {
-  color: var(--sky);
+  color: var(--accent);
 }
 .case-header {
   display: grid;
@@ -33,7 +32,7 @@
   margin-bottom: 3rem;
 }
 .case-kicker {
-  color: var(--gold);
+  color: var(--accent);
   text-transform: uppercase;
 }
 .case-header h1 {
@@ -135,7 +134,7 @@
   transition: color 0.3s var(--ease);
 }
 .case-next:hover .case-next-name {
-  color: var(--sky);
+  color: var(--accent);
 }
 .case-footer > a.mono {
   display: inline-flex;

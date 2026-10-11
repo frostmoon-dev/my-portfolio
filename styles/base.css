@@ -30,13 +30,13 @@ body::after {
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0.06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.16  0 0 0 0 0.145  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: var(--sky);
-  color: var(--navy);
+  background: var(--accent);
+  color: var(--on-ink);
 }
 
 h1,
@@ -58,7 +58,7 @@ ol {
   padding: 0;
 }
 a {
-  color: var(--sky);
+  color: var(--accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
 }
@@ -97,8 +97,8 @@ button {
   top: -4rem;
   z-index: 200;
   padding: 0.75rem 1rem;
-  background: var(--cream);
-  color: var(--navy);
+  background: var(--ink);
+  color: var(--on-ink);
   border-radius: 8px;
   font-weight: 600;
 }
@@ -116,7 +116,7 @@ button {
 .mono {
   font-family: var(--monof);
   font-size: 0.8125rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
 }
 .muted {
@@ -134,7 +134,7 @@ button {
   gap: 0.5rem;
   min-height: 48px;
   padding: 0 1.4rem;
-  border-radius: 999px;
+  border-radius: var(--radius);
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--ink);
@@ -148,19 +148,33 @@ button {
     transform 0.4s var(--ease);
 }
 .btn:hover {
-  border-color: var(--sky);
+  border-color: var(--accent);
 }
 .btn:active {
   transform: translateY(1px);
 }
 .btn-primary {
-  background: var(--cream);
-  border-color: var(--cream);
-  color: var(--navy);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
 }
 .btn-primary:hover {
-  background: var(--sky);
-  border-color: var(--sky);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+/* the quiet partner of a primary button: an underlined accent link */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 0.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.text-link:hover {
+  color: var(--ink);
 }
 
 .icon-btn {
@@ -168,7 +182,7 @@ button {
   place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   border: 1px solid transparent;
   background: transparent;
   color: var(--ink);
@@ -185,8 +199,8 @@ button {
   cursor: default;
 }
 .icon-btn[aria-pressed="true"] {
-  color: var(--sky);
-  border-color: rgb(169 220 255 / 0.4);
+  color: var(--accent);
+  border-color: var(--line-strong);
 }
 .icon-btn-sm {
   width: 32px;
