@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Frosted Ledger — design tokens (direction 1b, light only).
+   Frosted Ledger: design tokens (direction 1b, light only).
    Icy paper, coffee ink, one teal accent. Hairline rules and 6px
    corners. Ratios are against --bg: text 12.5, muted 7.6, accent 5.8.
 
@@ -45,10 +45,12 @@
   --night-ink: #e7f1f3;
   --night-muted: #ccd6d6;
 
-  /* type */
-  --serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  /* type: one family (Atkinson Hyperlegible Next) + its mono sibling.
+     Hierarchy is size and weight. Body is 400, headings 650, display 700. */
   --sans: var(--font-sans), system-ui, sans-serif;
   --monof: var(--font-mono), ui-monospace, monospace;
+  --weight-heading: 650;
+  --weight-display: 700;
 
   /* motion: soft, weighted, never bouncy */
   --ease: cubic-bezier(0.22, 0.61, 0.24, 1);

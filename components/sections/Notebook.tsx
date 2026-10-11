@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import type { NotebookPage } from "@/content/types";
 
@@ -24,7 +23,6 @@ export function Notebook({ pages, motto }: { pages: NotebookPage[]; motto: strin
   return (
     <div
       className="notebook"
-      data-reveal
       role="region"
       aria-roledescription="notebook"
       aria-label="Notes from the notebook"
@@ -36,7 +34,7 @@ export function Notebook({ pages, motto }: { pages: NotebookPage[]; motto: strin
     >
       <div className="notebook-spread">
         <div className="notebook-page notebook-left" aria-hidden="true">
-          <p className="hand notebook-motto">{motto}</p>
+          <p className="notebook-motto">{motto}</p>
           <svg viewBox="0 0 200 120" className="notebook-sketch">
             <path d="M20 100 L60 55 L90 85 L120 40 L180 100" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             <path d="M150 20 a14 14 0 1 0 10 24 a11 11 0 0 1 -10 -24Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -47,16 +45,16 @@ export function Notebook({ pages, motto }: { pages: NotebookPage[]; motto: strin
         </div>
         <div className="notebook-right">
           <article className="notebook-page notebook-current" aria-live="polite" key={page.id}>
-            <h3 className="hand">{page.heading}</h3>
+            <h3>{page.heading}</h3>
             {page.paragraphs.map((p, k) => (
               <p key={k}>{p}</p>
             ))}
-            {page.margin && <p className="hand notebook-margin">{page.margin}</p>}
+            {page.margin && <p className="notebook-margin">{page.margin}</p>}
             <p className="mono notebook-folio">p. {String(i * 2 + 2).padStart(2, "0")}</p>
           </article>
           {leaving && (
             <article className={`notebook-page notebook-turning dir-${turning!.dir > 0 ? "next" : "prev"}`} aria-hidden="true">
-              <h3 className="hand">{leaving.heading}</h3>
+              <h3>{leaving.heading}</h3>
               {leaving.paragraphs.map((p, k) => (
                 <p key={k}>{p}</p>
               ))}
@@ -65,16 +63,14 @@ export function Notebook({ pages, motto }: { pages: NotebookPage[]; motto: strin
         </div>
       </div>
       <div className="notebook-controls">
-        <button type="button" className="icon-btn" onClick={() => go(-1)} disabled={i === 0}>
-          <ChevronLeft aria-hidden="true" size={18} />
-          <span className="sr-only">Previous page</span>
+        <button type="button" className="text-btn" onClick={() => go(-1)} disabled={i === 0}>
+          <span aria-hidden="true">←</span> Previous page
         </button>
         <span className="mono" aria-hidden="true">
           {i + 1} / {pages.length}
         </span>
-        <button type="button" className="icon-btn" onClick={() => go(1)} disabled={i === pages.length - 1}>
-          <ChevronRight aria-hidden="true" size={18} />
-          <span className="sr-only">Next page</span>
+        <button type="button" className="text-btn" onClick={() => go(1)} disabled={i === pages.length - 1}>
+          Next page <span aria-hidden="true">→</span>
         </button>
       </div>
     </div>

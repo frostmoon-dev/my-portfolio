@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // Drives styles/motion/ledger-rows.css for one list.
 //
-// - Enter: if the list starts below the fold it waits in "pre" (invisible,
-//   off screen) and plays "in" when it scrolls into view. If it is already
-//   on screen, it is shown as is — no animation on load.
+// - Enter: if the list starts below the fold it waits in "pre" (rules not
+//   drawn yet, rows visible) and rules them in when it scrolls into view. If it is already
+//   on screen, it is shown as is, with no animation on load.
 // - Exit: swap(next) plays "out", then renders the new rows and plays "in".
 //   Rapid swaps: the latest one wins.
 // The state lives on the element (data-state), so no React re-render is

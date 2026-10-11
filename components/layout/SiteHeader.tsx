@@ -1,6 +1,5 @@
 "use client";
 
-import { Menu, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { navItems, site } from "@/content/site";
 import { useClock } from "@/hooks/useClock";
@@ -50,12 +49,12 @@ export function SiteHeader() {
   return (
     <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <div className="site-header-inner">
-        <a href="#top" className="wordmark" aria-label={`${site.atelier} — back to the room`}>
+        <a href="#top" className="wordmark" aria-label={`${site.atelier}, back to the room`}>
           <svg viewBox="0 0 24 24" aria-hidden="true" className="wordmark-moon">
             <path d="M15.5 3.5a8.5 8.5 0 1 0 5 15.3A7 7 0 0 1 15.5 3.5Z" />
           </svg>
           <span className="wordmark-text">
-            The Midnight <em>Atelier</em>
+            The Midnight Atelier
           </span>
         </a>
 
@@ -79,24 +78,24 @@ export function SiteHeader() {
           </span>
           <button
             type="button"
-            className="icon-btn"
+            className="text-btn header-btn"
             aria-pressed={soundOn}
             onClick={toggleSound}
-            title={soundOn ? "Turn the rain off" : "Turn the rain on"}
           >
-            {soundOn ? <Volume2 aria-hidden="true" size={18} /> : <VolumeX aria-hidden="true" size={18} />}
-            <span className="sr-only">Rain sound</span>
+            Rain<span className="sr-only"> sound</span>{" "}
+            <span className="header-btn-state" aria-hidden="true">
+              {soundOn ? "on" : "off"}
+            </span>
           </button>
           <button
             ref={menuBtn}
             type="button"
-            className="icon-btn menu-btn"
+            className="text-btn header-btn menu-btn"
             aria-expanded={open}
             aria-controls="menu-panel"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
-            <span className="sr-only">Menu</span>
+            {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>

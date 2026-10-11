@@ -12,7 +12,7 @@ function labelAbove(stars: Milestone[], i: number) {
   return below > near.length / 2 || (below === near.length / 2 && stars[i].y > 50);
 }
 
-// 06 — Still Becoming. The constellation outside the window, unfinished on purpose.
+// 06 · Still Becoming. The constellation outside the window, unfinished on purpose.
 export function StillBecoming() {
   const stars = milestones.filter((m) => isDev || !m.draft);
   return (
@@ -21,12 +21,11 @@ export function StillBecoming() {
         <SectionHeading
           id="becoming"
           index="06"
-          kicker="Still Becoming"
           title={becomingLead}
           lead="Some of these stars are lit. The rest are drawn in pencil, on purpose."
           layout="center"
         />
-        <figure className="constellation" data-reveal>
+        <figure className="constellation">
           <svg viewBox="0 0 1000 520" aria-hidden="true">
             {stars.slice(1).map((s, i) => {
               const a = stars[i];

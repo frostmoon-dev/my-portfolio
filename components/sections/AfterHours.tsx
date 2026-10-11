@@ -9,7 +9,7 @@ import { CoffeeNote } from "./CoffeeNote";
 const isDev = process.env.NODE_ENV === "development";
 const isEmpty = (t: LikeTile) => !t.body && !t.items?.length && !t.swatches?.length && !t.photos?.length;
 
-// 05 — After Hours. The playful drawer: themes, small loves, the coffee cup.
+// 05 · After Hours. The playful drawer: themes, small loves, the coffee cup.
 export function AfterHours() {
   const tiles = likes.filter((t) => isDev || !isEmpty(t));
   return (
@@ -19,7 +19,6 @@ export function AfterHours() {
           <SectionHeading
             id="after-hours"
             index="05"
-            kicker="After Hours"
             title="Not everything needs a business requirement."
             lead="Sometimes I just wanted to see if I could build it. This is where those things go, along with everything else I love."
           />
@@ -49,15 +48,7 @@ export function AfterHours() {
               </li>
             ) : (
               <li key={t.id} className={`keepsake keepsake-${t.size ?? "sm"}`}>
-                <h4>
-                  {t.title}
-                  {t.kaomoji && (
-                    <span className="kaomoji" aria-hidden="true">
-                      {" "}
-                      {t.kaomoji}
-                    </span>
-                  )}
-                </h4>
+                <h4>{t.title}</h4>
                 {t.body && <p>{t.body}</p>}
                 {t.items && t.items.length > 0 && (
                   <ul className="keepsake-items">

@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ExternalMark } from "@/components/ui/ExternalMark";
 import { Envelope } from "./Envelope";
 
-// 07 — Leave a Letter. Contact, as stationery.
+// 07 · Leave a Letter. Contact, as stationery.
 export function Letter() {
   const email = contacts.find((c) => c.kind === "email")!;
   return (
@@ -15,7 +15,6 @@ export function Letter() {
           <SectionHeading
             id="letter"
             index="07"
-            kicker="Leave a Letter"
             title="Leave a letter on the desk"
             lead="For work, for a project, or to tell me about a character you love. I read everything, usually with coffee."
           />

@@ -1,7 +1,9 @@
 /* ------------------------------------------------------------------
    Motion: "Ledger rows"
-   Rows are written in like lines in a ledger: each row's content rises
-   into place, then its hairline is ruled from left to right.
+   The rows are always readable. When a list first scrolls into view, only
+   its hairlines are ruled in, one after another, from left to right, the
+   way lines are drawn in a ledger. Content never fades or slides in on
+   scroll (that is the generic "fade-in on scroll" look).
 
    Only `transform` and `opacity` are animated, so nothing reflows.
 
@@ -13,9 +15,9 @@
                                 lists that filter use useLedgerRows()
    data-state on the list:
      (none) → plain, visible list (no JS)
-     pre    → rows waiting below, invisible (only ever off screen)
-     in     → rows entered (staggered)
-     out    → rows leaving upward (before a filter swaps them)
+     pre    → rules not drawn yet (content is visible)
+     in     → rules drawn (staggered)
+     out    → a filter is swapping rows: content dips, rules erase
    Tune with the variables below; remove the attribute to switch a list off.
    ------------------------------------------------------------------ */
 [data-motion="ledger-rows"] {
@@ -25,8 +27,7 @@
   --lr-rule-duration: 900ms;
   --lr-rule-delay: 160ms; /* the rule starts once its row has mostly landed */
   --lr-stagger: 70ms;
-  --lr-stagger-max: 8; /* rows after this enter together */
-  --lr-rise: 18px;
+  --lr-stagger-max: 8; /* rows after this are ruled together */
   --lr-exit-duration: 220ms;
   --lr-exit-lift: 8px;
   --lr-press-scale: 0.985;
@@ -74,18 +75,14 @@
   transition-delay: var(--lr-delay);
 }
 
-/* enter: waiting state (set only while the list is off screen) */
-[data-motion="ledger-rows"][data-motion][data-state="pre"] > * > * {
-  opacity: 0;
-  transform: translate3d(0, var(--lr-rise), 0);
-  transition: none;
-}
+/* enter: the rules wait undrawn (set only while the list is off screen) */
 [data-motion="ledger-rows"][data-state="pre"] > *::after {
   transform: scaleX(0);
   transition: none;
 }
 
-/* exit: rows lift and fade together, quickly; the rule is erased right to left */
+/* exit (filter swap only, never on scroll): rows lift and dip together,
+   quickly, so the change is visible; the rule is erased right to left */
 [data-motion="ledger-rows"][data-motion][data-state="out"] > * > * {
   opacity: 0;
   transform: translate3d(0, calc(var(--lr-exit-lift) * -1), 0);
@@ -127,10 +124,10 @@
   transition-delay: 0ms;
 }
 
-/* reduced motion: no travel, no stagger, no sweep — a brief fade only */
+/* reduced motion: no travel, no stagger, no sweep. Rules are drawn at once;
+   a filter swap is a brief fade only. */
 @media (prefers-reduced-motion: reduce) {
   [data-motion="ledger-rows"] {
-    --lr-rise: 0px;
     --lr-exit-lift: 0px;
     --lr-press-scale: 1;
     --lr-stagger: 0ms;

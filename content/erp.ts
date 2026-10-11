@@ -25,7 +25,7 @@ export const erpCapabilities: ErpCapability[] = [
   },
   {
     title: "Production debugging",
-    detail: "Reproduce, trace, fix — calmly, while users are waiting.",
+    detail: "Reproduce it, trace it, fix it. Calmly, while users wait.",
   },
   {
     title: "Business Central (AL)",
