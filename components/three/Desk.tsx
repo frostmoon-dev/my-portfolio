@@ -222,7 +222,6 @@ function Notebook() {
 
 function IcedCoffee() {
   const m = useMaterials();
-  const ice = useRef<THREE.Group>(null);
   const glassGeo = useMemo(() => {
     const pts = [
       new THREE.Vector2(0.0, 0),
@@ -237,9 +236,6 @@ function IcedCoffee() {
     const pts = [new THREE.Vector2(0, 0.015), new THREE.Vector2(0.118, 0.015), new THREE.Vector2(0.141, 0.3), new THREE.Vector2(0, 0.3)];
     return new THREE.LatheGeometry(pts, 32);
   }, []);
-  useFrame(({ clock }) => {
-    if (ice.current) ice.current.position.y = Math.sin(clock.elapsedTime * 0.8) * 0.004;
-  });
   return (
     <Hotspot id="coffee" labelAt={[0, 0.78, 0]} glow="#d7b06a" position={[1.0, TOP, -1.12]} note={coffeeNotes[0]}>
       {/* coaster */}
@@ -251,7 +247,7 @@ function IcedCoffee() {
         <mesh position={[0, 0.2, 0]} material={m.milk}>
           <cylinderGeometry args={[0.137, 0.128, 0.08, 32]} />
         </mesh>
-        <group ref={ice}>
+        <group>
           {[
             [0.04, 0.27, 0.02, 0.4],
             [-0.05, 0.28, -0.03, 1.1],

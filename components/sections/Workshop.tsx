@@ -11,14 +11,15 @@ export function Workshop() {
           id="workshop"
           index="02"
           kicker="The Workshop"
-          title={<>Where the day job <em>lives</em></>}
+          title="The day job"
           lead={erpIntro}
+          layout="split"
         />
 
         <div className="workshop-top">
           <ol className="timeline" aria-label="Experience">
             {experience.map((e) => (
-              <li key={e.role} className="timeline-entry" data-reveal>
+              <li key={e.role} className="timeline-entry">
                 <p className="mono timeline-meta">
                   {e.period ?? "Current role"}
                   {e.org && <> · {e.org}</>}
@@ -35,7 +36,7 @@ export function Workshop() {
               </li>
             ))}
           </ol>
-          <aside className="tools" aria-labelledby="tools-title" data-reveal>
+          <aside className="tools" aria-labelledby="tools-title">
             <h3 id="tools-title" className="mono">On the bench</h3>
             <ul>
               {workshopTools.map((t) => (
@@ -45,25 +46,28 @@ export function Workshop() {
           </aside>
         </div>
 
-        <h3 className="sub-heading" data-reveal>
+        <h3 className="sub-heading">
           What I do
         </h3>
-        <ul className="capabilities">
+        <dl className="capabilities">
           {erpCapabilities.map((c, i) => (
-            <li key={c.title} data-reveal>
-              <span className="mono capability-no">{String(i + 1).padStart(2, "0")}</span>
-              <h4>{c.title}</h4>
-              <p>{c.detail}</p>
-            </li>
+            <div key={c.title}>
+              <dt>
+                <span className="mono capability-no">{String(i + 1).padStart(2, "0")}</span>
+                {c.title}
+              </dt>
+              <dd>{c.detail}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
 
-        <h3 className="sub-heading" data-reveal>
-          Problems I&apos;ve solved <span className="muted">— a journal, kept generic on purpose</span>
+        <h3 className="sub-heading">
+          Problems I&apos;ve solved
+          <span className="sub-heading-note">A journal, kept generic on purpose: no client names, no client code.</span>
         </h3>
         <ol className="journal">
           {erpCases.map((c) => (
-            <li key={c.ref} className="journal-entry" data-reveal>
+            <li key={c.ref} className="journal-entry">
               <p className="mono journal-ref">{c.ref}</p>
               <div>
                 <h4>{c.title}</h4>

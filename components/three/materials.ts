@@ -45,9 +45,10 @@ export function createMaterials() {
     straw: paint("#a9dcff", { amount: 0.05, roughness: 0.5 }),
     seal: paint("#8e2f3b", { amount: 0.08, roughness: 0.4 }),
     steel: paint("#2d6ac8", { amount: 0.1, roughness: 0.6 }),
-    photo1: paint("#7b93c4", { amount: 0.2, scale: 9 }),
-    photo2: paint("#a3ad91", { amount: 0.2, scale: 9 }),
-    photo3: paint("#d7b06a", { amount: 0.2, scale: 9 }),
+    // faded prints: muted so they sit in the wall, not on top of it
+    photo1: paint("#4c5d86", { amount: 0.25, scale: 9 }),
+    photo2: paint("#6c7462", { amount: 0.25, scale: 9 }),
+    photo3: paint("#8a7650", { amount: 0.25, scale: 9 }),
     shelfBook: paint("#ffffff", { amount: 0.16, scale: 6, roughness: 0.85 }),
     building: paint("#16244a", { amount: 0.12, scale: 1, roughness: 1 }),
     screen: new THREE.MeshBasicMaterial({ map: screenTexture(), toneMapped: false }),

@@ -4,7 +4,7 @@ Teha's portfolio: a private workspace at 12:47 a.m. — an interactive 3D room, 
 
 *Somewhere Between Dreams & Syntax.*
 
-Next.js 16 (App Router) · React 19 · TypeScript · React Three Fiber · GSAP · Tailwind CSS 4 · fully static · deploys on Vercel.
+Next.js 16 (App Router) · React 19 · TypeScript · React Three Fiber · Tailwind CSS 4 · fully static · deploys on Vercel.
 
 ## Run it
 
@@ -63,7 +63,7 @@ components/
              Hotspot (hover/click), CameraRig (directed camera), materials + paint (painterly shading)
   sections/  the seven sections
   layout/    header (menu, clock, sound), footer
-  ui/        shared pieces: SectionHeading, Reveals, ProjectCover, ThemeGallery
+  ui/        shared pieces: SectionHeading, Reveals, ProjectCover, ThemeGallery, ExternalMark
 shaders/     rain on the glass, the sky, the moon
 store/       shared state between the room and the page (zustand)
 hooks/       WebGL check, reduced motion, quality guess, clock, rain sound
@@ -87,8 +87,10 @@ styles/      tokens, base, header, stage, sections, after-hours, case pages
 ## Design
 
 - **Palette:** midnight navy `#0A1B42`, deep blue `#0F2658`, steel `#2D6AC8` (lines and fills only — it fails contrast as text), soft sky `#A9DCFF`, sage `#A3AD91`, warm cream `#E8DDC9`, antique gold `#D7B06A` (used sparingly).
-- **Type:** Instrument Serif (headings, handwriting), Manrope (reading), JetBrains Mono (indexes, timestamps). Self-hosted by `next/font`.
-- **Motion:** soft, weighted easing; no bounce. Tokens live in `styles/tokens.css`.
+- **Type:** Instrument Serif (headings, handwriting), DM Sans (reading), IBM Plex Mono (indexes, timestamps — 13px minimum). Self-hosted by `next/font`.
+- **Motion:** soft, weighted easing; no bounce. Only section headings and a few paper objects fade in; lists don't. Plain CSS transitions and one IntersectionObserver — no animation library. Tokens live in `styles/tokens.css`.
+- **Layout:** one continuous night background; sections differ only in where the light comes from (lamp, screen, window). Lists are set as type with hairlines, not cards. Each section's kicker names the room object it came from.
+- **Phones and portrait tablets:** the room gets its own frame at the top; the introduction sits below it instead of over it.
 
 ## Accessibility
 

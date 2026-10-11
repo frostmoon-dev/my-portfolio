@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, JetBrains_Mono, Manrope } from "next/font/google";
+import { DM_Sans, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Instrument Serif for the expressive headings, Manrope for reading,
-// JetBrains Mono for timestamps, indexes and anything technical.
+// Instrument Serif for the expressive headings, DM Sans for reading (warmer
+// and calmer at body size than a geometric sans), IBM Plex Mono for indexes
+// and timestamps — closer to a typewriter than a code editor.
 const serif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -13,13 +14,13 @@ const serif = Instrument_Serif({
   display: "swap",
 });
 
-const sans = Manrope({
+const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",

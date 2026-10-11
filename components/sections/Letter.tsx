@@ -14,10 +14,10 @@ export function Letter() {
             id="letter"
             index="07"
             kicker="Leave a Letter"
-            title={<>Leave a letter <em>on the desk</em></>}
+            title="Leave a letter on the desk"
             lead="For work, for a project, or to tell me about a character you love. I read everything, usually with coffee."
           />
-          <ul className="contact-list" data-reveal>
+          <ul className="contact-list">
             {contacts.map((c) => (
               <li key={c.kind}>
                 <span className="mono contact-kind">{c.label}</span>
