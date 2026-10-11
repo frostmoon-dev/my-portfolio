@@ -1,5 +1,6 @@
 import { becomingLead, milestones } from "@/content/aspirations";
 import type { Milestone } from "@/content/types";
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -17,6 +18,7 @@ export function StillBecoming() {
   const stars = milestones.filter((m) => isDev || !m.draft);
   return (
     <section id="becoming" className="section section-becoming" aria-labelledby="becoming-title">
+      <Atmosphere section="becoming" />
       <div className="wrap">
         <SectionHeading
           id="becoming"

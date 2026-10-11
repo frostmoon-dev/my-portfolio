@@ -148,3 +148,20 @@ export type ProjectCover = {
   tint: string;
   motif: "dialogue" | "moon" | "envelope" | "ledger" | "board" | "swatch";
 };
+
+/** A photograph behind a section, already toned to the palette. */
+export type AtmospherePhoto = {
+  /** File in /public, toned to navy/cream (see README → Atmosphere photos). */
+  src: string;
+  /** Which side of the section it lives on; it fades out toward the text. */
+  side: "left" | "right" | "full" | "top";
+  /** 0–1. Keep it low: it is atmosphere, not content. */
+  opacity: number;
+  /** CSS object-position, to choose which part of the photo shows. */
+  position?: string;
+  photographer: string;
+  /** Photographer's Unsplash profile. */
+  profile: string;
+  /** The photo's page on Unsplash. */
+  source: string;
+};

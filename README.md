@@ -40,6 +40,7 @@ All text lives in `content/`. You never need to touch the 3D scene or the animat
 | `content/likes.ts` | "Small loves" cards in After Hours |
 | `content/themes.ts` | Theme pack names, blurbs, credits, Marketplace links |
 | `content/aspirations.ts` | "Still Becoming": the constellation's stars |
+| `content/atmosphere.ts` | Background photographs per section, with photographer credits |
 | `content/types.ts` | The shapes of all of the above (TypeScript checks your edits) |
 
 ### Things to fill in
@@ -75,6 +76,15 @@ styles/      tokens, base, header, stage, sections, after-hours, case pages
 - **Every object is also a link.** The chips under the introduction and the menu reach the same sections. Nobody has to find the clickable things.
 - **Fallbacks.** The painted 2D atelier renders first (also without JavaScript). The 3D room fades in over it only when WebGL works and reduced motion is off. If the scene errors or the GPU context is lost, the painting stays.
 - **Performance.** The 3D code is a separate bundle, loaded after the page. Pixel ratio is capped per device; shadows are desktop-only; dust is off on low-power devices; quality drops a tier if the frame rate struggles; rendering stops when the room is off screen or the tab is hidden.
+
+## Atmosphere photos
+
+Five sections have a faint photograph behind them — one per light in the room: the lamp (The Person), the street (The Archives), the shelf (Knowledge), the sky (Still Becoming), the rain (Leave a Letter). The Workshop stays clean on purpose.
+
+- All are from [Unsplash](https://unsplash.com), free to use under the Unsplash License. Photographers are credited in the footer and in `content/atmosphere.ts`.
+- The files in `public/images/atmosphere/` are already toned: each photo's brightness is mapped onto the site's own colours (midnight → dusty steel → cream), so they never bring in outside colours. `next/image` serves them as AVIF/WebP at the right size.
+- Each photo fades out toward the text and at the section edges, and drifts slightly slower than the page as you scroll (parallax). With reduced motion it stays still. On phones the photos only frame the top of the section and are dimmed further so text stays above 4.5:1 contrast.
+- To change one: put a toned image in `public/images/atmosphere/`, then edit its entry (side, opacity, position, credit). To remove one, delete its entry.
 
 ## Signature details
 
